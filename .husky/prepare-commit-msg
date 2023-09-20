@@ -1,0 +1,8 @@
+#!/bin/sh
+export PATH=/usr/bin:$PATH
+. "$(dirname "$0")/_/husky.sh"
+
+if [ $(grep -cv -e '^#' -e '^$' .git/COMMIT_EDITMSG) -eq 0 ]
+then
+  (exec < /dev/tty && echo "$TERM" && npx git-cz -e --hook || echo skip commit) || echo skip prepare
+fi

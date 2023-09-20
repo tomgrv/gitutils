@@ -1,0 +1,6 @@
+#!/bin/sh
+export PATH=/usr/bin:$PATH
+. "$(dirname "$0")/_/husky.sh"
+
+npx git-precommit-checks
+npx lint-staged --cwd ${INIT_CWD:-$PWD}

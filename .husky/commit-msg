@@ -1,0 +1,5 @@
+#!/bin/sh
+export PATH=/usr/bin:$PATH
+. "$(dirname "$0")/_/husky.sh"
+
+npm install $(cat package.json | npx jqn '.commitlint.extends' | tr -d "'[]:") --no-save && npx commitlint --edit "$1" && npx devmoji -e

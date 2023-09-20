@@ -1,0 +1,304 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "npm-watch",
+            "type": "npm",
+            "script": "watch",
+            "group": "test",
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            },
+            "isBackground": true,
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            },
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "npm-maildev",
+            "type": "npm",
+            "script": "maildev",
+            "group": "test",
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            },
+            "isBackground": true,
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            },
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "php-stop",
+            "type": "shell",
+            "command": "kill $(ps -ef | grep php | grep serve | awk '{print $2}')",
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": "test",
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "dev-start",
+            "dependsOn": [
+                "npm-watch",
+                "npm-maildev",
+                "dev-queues",
+                "dev-schedule"
+            ]
+        },
+        {
+            "label": "dev-stop",
+            "dependsOn": ["php-stop", "terminate"]
+        },
+        {
+            "label": "dev-init",
+            "dependsOn": ["artisan-init", "git-config"]
+        },
+        {
+            "label": "artisan-init",
+            "type": "shell",
+            "command": "php artisan key:generate && php artisan migrate",
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": "test",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "git-config",
+            "type": "shell",
+            "command": ".gitutils/config.sh",
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": "test",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "git-fixup",
+            "type": "shell",
+            "command": ".gitutils/fixup.sh",
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": "test"
+        },
+        {
+            "label": "build",
+            "dependsOn": ["npm: prod"],
+            "isBackground": true,
+            "group": "build",
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "dev-config",
+            "type": "shell",
+            "command": "php artisan config:cache",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "dev-views",
+            "type": "shell",
+            "command": "php artisan view:cache",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "dev-queues",
+            "type": "shell",
+            "command": "php artisan queue:listen",
+            "group": "test",
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            },
+            "isBackground": true,
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "dev-schedule",
+            "type": "shell",
+            "command": "php artisan schedule:work",
+            "group": "test",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            },
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "dev-queues",
+            "type": "shell",
+            "command": "php artisan queue:listen",
+            "group": "test",
+            "isBackground": true,
+            "problemMatcher": {
+                "pattern": [
+                    {
+                        "regexp": ".",
+                        "file": 1,
+                        "location": 2,
+                        "message": 3
+                    }
+                ],
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": ".",
+                    "endsPattern": "."
+                }
+            },
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        },
+        {
+            "label": "dev-routes",
+            "type": "shell",
+            "command": "php artisan route:cache",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            }
+        },
+        {
+            "label": "dev-db",
+            "type": "shell",
+            "command": "php artisan migrate:refresh --ansi --seed",
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": false
+            }
+        },
+        {
+            "label": "terminate",
+            "command": "echo ${input:terminate}",
+            "type": "shell",
+            "problemMatcher": [],
+            "isBackground": true,
+            "group": "test",
+            "presentation": {
+                "reveal": "never",
+                "clear": true,
+                "showReuseMessage": false,
+                "close": true
+            },
+            "options": {
+                "statusbar": {
+                    "hide": true
+                }
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "terminate",
+            "type": "command",
+            "command": "workbench.action.tasks.terminate",
+            "args": "terminateAll"
+        }
+    ]
+}

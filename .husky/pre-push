@@ -1,0 +1,5 @@
+#!/bin/sh
+export PATH=/usr/bin:$PATH
+. "$(dirname "$0")/_/husky.sh"
+
+npx validate-branch-name

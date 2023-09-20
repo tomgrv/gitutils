@@ -1,0 +1,33 @@
+{
+    "recommendations": [
+        "github.copilot",
+        "vivaxy.vscode-conventional-commits",
+        "actboy168.tasks",
+        "spmeesseman.vscode-taskexplorer",
+        "gruntfuggly.triggertaskonsave",
+        "entexa.tall-stack",
+        "github.codespaces",
+        "natizyskunk.sftp",
+        "formulahendry.auto-rename-tag",
+        "formulahendry.auto-close-tag",
+        "absszero.vscode-laravel-goto",
+        "marabesi.php-import-checker",
+        "alexcvzz.vscode-sqlite",
+        "bmewburn.vscode-intelephense-client",
+        "gruntfuggly.todo-tree",
+        "onecentlin.laravel-blade",
+        "github.copilot-labs",
+        "github.copilot-chat",
+        "dotenv.dotenv-vscode",
+        "donjayamanne.githistory",
+        "xdebug.php-debug",
+        "tomblind.scm-buttons-vscode",
+        "misterj.laravel-expack",
+        "devsense.composer-php-vscode",
+        "shaharkazaz.git-merger",
+        "mhutchie.git-graph",
+        "christian-kohler.npm-intellisense",
+        "davidanson.vscode-markdownlint",
+        "github.vscode-github-actions"
+    ]
+}

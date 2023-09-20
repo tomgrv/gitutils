@@ -1,0 +1,25 @@
+{
+    "triggerTaskOnSave.tasks": {
+        "dev-config": ["**/config.php", "config/*.php"],
+        "dev-views": [
+            //  "packages/**/*.blade.php"
+        ],
+        "dev-routes": ["**/[Rr]outes/*.php"],
+        "dev-db": [
+            // "**/migrations/*.php"
+        ]
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]",
+        "NOTE"
+    ],
+    "conventionalCommits.gitmoji": false
+}
