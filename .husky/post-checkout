@@ -1,0 +1,27 @@
+#!/bin/sh
+export PATH=/usr/bin:$PATH
+. "$(dirname "$0")/_/husky.sh"
+
+changed()  {
+  git diff --name-only HEAD@{1} HEAD | grep "^$1" > /dev/null 2>&1
+}
+
+isRebase()  {
+  git rev-parse --git-dir | grep -q 'rebase-merge' || git rev-parse --git-dir | grep -q 'rebase-apply' > /dev/null 2>&1
+}
+
+
+if changed 'composer.json' && ! isRebase
+then
+    composer update php -W --ignore-platform-reqs --no-scripts --no-autoloader
+fi
+
+if changed 'package-lock.json' && ! isRebase
+then
+    npm install --ws --if-present --include-workspace-root
+fi
+
+if changed '.gitutils/config.sh'
+then
+    .gitutils/config.sh
+fi
