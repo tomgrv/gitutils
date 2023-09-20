@@ -75,5 +75,4 @@ cat <<-EOF > .gitattributes
 EOF
 
 
-
 echo "Done."
