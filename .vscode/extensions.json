@@ -24,10 +24,11 @@
         "tomblind.scm-buttons-vscode",
         "misterj.laravel-expack",
         "devsense.composer-php-vscode",
-        "shaharkazaz.git-merger",
         "mhutchie.git-graph",
         "christian-kohler.npm-intellisense",
         "davidanson.vscode-markdownlint",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "pcbowers.alpine-intellisense",
+        "softwareape.rebaser"
     ]
 }

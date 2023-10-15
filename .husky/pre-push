@@ -2,4 +2,8 @@
 export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
+# Enable colors in Powershell
+exec >/dev/tty 2>&1
+
+# Check if the current Git branch name is valid
 npx validate-branch-name

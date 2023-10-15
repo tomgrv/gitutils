@@ -2,12 +2,17 @@
 export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
-changed() {
-  git diff --name-only HEAD@{1} HEAD | grep "^$1" > /dev/null 2>&1
+# Enable colors in Powershell
+exec >/dev/tty 2>&1
+
+# Check if file is changed
+isChanged() {
+  git diff --name-only HEAD@{1} HEAD | grep "^$1" >/dev/null 2>&1
 }
 
-if changed 'composer.lock' || changed 'package-lock.json'
-then
-  git checkout --theirs composer.lock package-lock.json
-  echo "📦 package-lock.json or composer.lock changed. Run npm install to bring your dependencies up to date."
+# Checkout composer.lock or package-lock.json if changed
+if isChanged 'composer.lock' || isChanged 'package-lock.json'; then
+  git checkout --theirs composer.lock package-lock.json && git add composer.lock package-lock.json
+  echo -e "\e[32mFiles <package-lock.json> or <composer.lock> changed.\e[0m"
+  echo -e "\e[32mRun composer/npm install to bring your dependencies up to date.\e[0m"
 fi

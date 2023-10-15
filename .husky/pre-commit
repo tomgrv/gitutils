@@ -2,5 +2,14 @@
 export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
+# Enable colors in Powershell
+exec >/dev/tty 2>&1
+
+# Check if the current Git command is a rebase
+if test "$GIT_COMMAND" = "rebase"; then
+    echo -e "\e[32m✔\e[0m Skip pre-commit hook during rebase"
+    exit 0
+fi
+
 npx git-precommit-checks
 npx lint-staged --cwd ${INIT_CWD:-$PWD}

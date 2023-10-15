@@ -2,4 +2,10 @@
 export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
-npm install $(cat package.json | npx jqn '.commitlint.extends' | tr -d "'[]:") --no-save && npx commitlint --edit "$1" && npx devmoji -e
+# Enable colors in Powershell
+exec >/dev/tty 2>&1
+
+# Apply commitlint rules to the latest commit message
+echo -e "\e[34m→\e[0m Applying commitlint rules to the latest commit..."
+typeset var PLUGINS=$(cat package.json | npx jqn '.commitlint.extends' | tr -d "'[]:")
+npm list --gobal $PLUGINS 2>/dev/null 1>&2 || npm install --gobal $PLUGINS 2>/dev/null 1>&2 && npx commitlint --edit "$1" && npx devmoji -e

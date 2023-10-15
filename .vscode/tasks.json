@@ -83,6 +83,10 @@
         },
         {
             "label": "dev-start",
+            "dependsOn": ["npm-watch", "npm-maildev"]
+        },
+        {
+            "label": "dev-full",
             "dependsOn": [
                 "npm-watch",
                 "npm-maildev",
@@ -117,20 +121,7 @@
             "command": ".gitutils/config.sh",
             "problemMatcher": [],
             "isBackground": true,
-            "group": "test",
-            "options": {
-                "statusbar": {
-                    "hide": true
-                }
-            }
-        },
-        {
-            "label": "git-fixup",
-            "type": "shell",
-            "command": ".gitutils/fixup.sh",
-            "problemMatcher": [],
-            "isBackground": true,
-            "group": "test"
+            "group": "none"
         },
         {
             "label": "build",

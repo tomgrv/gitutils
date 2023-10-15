@@ -2,26 +2,37 @@
 export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
-changed()  {
-  git diff --name-only HEAD@{1} HEAD | grep "^$1" > /dev/null 2>&1
+# Enable colors in Powershell
+exec >/dev/tty 2>&1
+
+# Check if file changed
+isChanged() {
+  git diff --name-only HEAD@{1} HEAD | grep "^$1" >/dev/null 2>&1
 }
 
-isRebase()  {
-  git rev-parse --git-dir | grep -q 'rebase-merge' || git rev-parse --git-dir | grep -q 'rebase-apply' > /dev/null 2>&1
+# Check if rebase
+isRebase() {
+  git rev-parse --git-dir | grep -q 'rebase-merge' || git rev-parse --git-dir | grep -q 'rebase-apply' >/dev/null 2>&1
 }
 
-
-if changed 'composer.json' && ! isRebase
-then
-    composer update php -W --ignore-platform-reqs --no-scripts --no-autoloader
+# Check if the current Git command is a rebase
+if test "$GIT_COMMAND" = "rebase"; then
+  echo -e "\e[32m✔\e[0m  Skip post-checkout hook during rebase."
+  exit 0
 fi
 
-if changed 'package-lock.json' && ! isRebase
-then
-    npm install --ws --if-present --include-workspace-root
+# Run composer install if composer.json changed
+if isChanged 'composer.lock' && ! isRebase; then
+  composer update php -W --ignore-platform-reqs --no-scripts --no-autoloader
 fi
 
-if changed '.gitutils/config.sh'
-then
-    .gitutils/config.sh
+# Run npm install if package-lock.json changed
+if isChanged 'package-lock.json' && ! isRebase; then
+  npm install --ws --if-present --include-workspace-root
+fi
+
+# Configure git utils if config.sh changed
+if isChanged '.gitutils/config.sh' && ! isRebase; then
+  chmod +x .gitutils/*.sh
+  .gitutils/config.sh
 fi

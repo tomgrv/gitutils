@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Laravel",
+            "name": "Artisan Serve",
             "type": "php",
             "request": "launch",
             "runtimeArgs": [
@@ -19,16 +19,20 @@
             "port": 9000,
             "preLaunchTask": "dev-start",
             "postDebugTask": "dev-stop",
+            "serverReadyAction": {
+                "pattern": "Server running on \\[http://0.0.0.0:([0-9]+)\\]",
+                "uriFormat": "http://localhost:%s",
+                "action": "debugWithChrome"
+            },
             "internalConsoleOptions": "openOnSessionStart"
         }
     ],
     "compounds": [
         {
             "name": "Platform",
-            "configurations": [
-                "Laravel"
-            ],
-            "preLaunchTask": "",
+            "configurations": ["Laravel"],
+            "preLaunchTask": "dev-full",
+            "postDebugTask": "dev-stop",
             "stopAll": true
         }
     ]
