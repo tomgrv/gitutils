@@ -1,0 +1,99 @@
+{
+    "peerDependencies": {
+        "@commitlint/cli": "^17.7.2",
+        "@commitlint/config-conventional": "^17.7.0",
+        "@commitlint/core": "^17.7.2",
+        "commitiquette": "^1.2.1",
+        "commitizen": "^4.3.0",
+        "conventional-changelog-cli": "^4.1.0",
+        "devmoji": "^2.3.0",
+        "git-precommit-checks": "^3.1.0",
+        "husky": "^8.0.3",
+        "lint-staged": "^14.0.1",
+        "prettier": "^3.0.3"
+    },
+    "config": {
+        "commitizen": {
+            "path": "commitiquette"
+        }
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,md,html,css,json,vue, yaml, yml}": [
+            "prettier --write"
+        ],
+        "*.php": [
+            "composer lint"
+        ]
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "subject-case": [
+                2,
+                "never",
+                [
+                    "start-case",
+                    "pascal-case",
+                    "upper-case"
+                ]
+            ],
+            "scope-enum": [
+                2,
+                "always",
+                [
+                    "deps",
+                    "release",
+                    "security",
+                    "i18n",
+                    "config",
+                    "add",
+                    "remove",
+                    "breaking",
+                    "modules",
+                    "packages",
+                    "ui-ux",
+                    "api",
+                    "model"
+                ]
+            ]
+        }
+    },
+    "git-precommit-checks": {
+        "rules": [
+            {
+                "message": "You've got leftover conflict markers",
+                "regex": "/^[<>|=]{4,}/m"
+            },
+            {
+                "message": "You have unfinished devs",
+                "nonBlocking": "true",
+                "regex": "(?:FIXME|TODO)"
+            }
+        ]
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "insertPragma": true
+    },
+    "standard-version": {
+        "bumpFiles": [
+            {
+                "filename": "composer.json",
+                "type": "json"
+            },
+            {
+                "filename": "package.json",
+                "type": "json"
+            },
+            {
+                "filename": "VERSION",
+                "type": "plain-text"
+            }
+        ]
+    }
+}

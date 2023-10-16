@@ -1,0 +1,5 @@
+hooks:
+  install:
+    commands:
+      - apk add --update npm
+      - npx --yes husky install
