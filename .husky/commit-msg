@@ -2,8 +2,10 @@
 export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
-# Enable colors in Powershell
-exec >/dev/tty 2>&1
+# Enable colors
+if command -v tty >/dev/null 2>&1; then
+    exec >/dev/tty 2>&1
+fi
 
 # Apply commitlint rules to the latest commit message
 echo -e "\e[34m→\e[0m Applying commitlint rules to the latest commit..."
