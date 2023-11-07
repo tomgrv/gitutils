@@ -1,0 +1,11 @@
+{
+    "name": "Publish node package",
+    "description": "Publish node package Workflow",
+    "iconName": "example-icon",
+    "categories": [
+        "Npm"
+    ],
+    "filePatterns": [
+        "package.json$"
+    ]
+}
