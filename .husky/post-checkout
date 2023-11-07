@@ -30,7 +30,7 @@ fi
 
 # Run npm install if package-lock.json changed
 if isChanged 'package-lock.json' && ! isRebase; then
-  npm install --ws --if-present --include-workspace-root
+  npm install
 fi
 
 # Configure git utils if config.sh changed
