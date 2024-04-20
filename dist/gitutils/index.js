@@ -7,6 +7,7 @@ import fs from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
 import path from 'path'
+import { execSync } from 'child_process'
 
 // Determine the machine type
 let machine
@@ -33,13 +34,21 @@ const git = simpleGit(process.cwd())
 // Configure repo for Mac
 if (machine === 'Mac') {
     console.log(chalk.blue('Configuring git for Mac...'))
+
     // Add your Mac-specific configuration here
+    // Install gitflow
+    console.log(chalk.blue('Installing gitflow...'))
+    execSync('npm i -g gitflow', { stdio: 'inherit' })
 }
 
 // Configure repo for Linux
 if (machine === 'Linux') {
     console.log(chalk.blue('Configuring git for Linux...'))
+
     // Add your Linux-specific configuration here
+    // Install gitflow
+    console.log(chalk.blue('Installing gitflow...'))
+    execSync('npm i -g gitflow', { stdio: 'inherit' })
 }
 
 // Configure repo for MinGw/Windows
@@ -47,6 +56,12 @@ if (machine === 'MinGw') {
     console.log(chalk.blue('Configuring git for MinGw...'))
     git.addConfig('core.filemode', 'false')
     git.addConfig('credential.helper', 'wincred')
+
+    // Install gitflow
+    console.log(chalk.blue('Installing gitflow...'))
+    execSync(
+        'curl -sSL https://raw.github.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh | bash -s install stable'
+    )
 }
 
 // Configure git globally for all platforms

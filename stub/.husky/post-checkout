@@ -4,7 +4,7 @@ export PATH=/usr/bin:$PATH
 
 # Enable colors
 if command -v tty >/dev/null 2>&1; then
-  exec >/dev/tty >&1
+  exec >/dev/tty 2>&1
 fi
 
 # Check if file changed
@@ -19,7 +19,7 @@ isRebase() {
 
 # Check if the current Git command is a rebase
 if test "$GIT_COMMAND" = "rebase"; then
-  echo "\e[32m✔\e[0m  Skip post-checkout hook during rebase."
+  npx chalk-cli --no-stdin -t "{green ✔} Skip post-checkout hook during rebase."
   exit 0
 fi
 

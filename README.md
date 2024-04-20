@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # DevUtils
 
 [![NPM](https://img.shields.io/npm/v/@tomgrv/devutils?logo=npm)](https://www.npmjs.com/package/@tomgrv/devutils)
@@ -10,18 +12,19 @@
 
 Configure developpement environnement in one step with:
 
-- @commitlint/cli
-- @commitlint/config-conventional
-- @commitlint/core
-- @commitlint/cz-commitlint
-- commitizen
-- conventional-changelog-cli
-- devmoji
-- git-precommit-checks
-- husky
-- lint-staged
-- prettier
-- standard-version
+-   @commitlint/cli
+-   @commitlint/config-conventional
+-   @commitlint/core
+-   @commitlint/cz-commitlint
+-   commitizen
+-   conventional-changelog-cli
+-   devmoji
+-   git-precommit-checks
+-   husky
+-   lint-staged
+-   prettier
+-   standard-version
+-   git-flow
 
 ## Installation
 
@@ -29,36 +32,34 @@ Configure developpement environnement in one step with:
 npm install @tomgrv/devutils --save-dev
 ```
 
-- All specified development packages are installed
-- Default configuration is pushed in `package.json` file
-- husky is configured
-- .gitignore & .gitattributes are deployed
-- current git repo is configured
-  - aliases are declared
-  - mergers are configured
+-   All specified development packages are installed
+-   Default configuration is pushed in `package.json` file
+-   husky is configured
+-   .gitignore & .gitattributes are deployed
+-   current git repo is configured
+    -   aliases are declared
+    -   mergers are configured
 
-| Alias | Description |
-|-------|-------------|
-| `amend`  | Amend the last commit
-| `crush`  | Amend and push the last commit
-| `undo`  | Undo the last commit
-| `clean`  | Restore the last commit
-| `ignore <file>`| Ignore specified file
-| `renameTag <tag>`| Rename the specified tag
-| `initFrom <repo> <path>`| Initialize a new repository from the specified repository in specified directory
-| `histo`| Show git history
-| `conflicts`| Show git conflicts
-| `hibernate`| Remove all ignored files (but keep untracked ones)
-| `fixup [commit]`| Edit the specified commit message. List relevant commits and ask for one if no commit is specified.
-| `align`| Align working directory *files* with the last *pushed* commit
-| `sync`| Align working directory *state* with the last *pushed* commit
-| `integrate`| Align working directory *state* with the last *local* commit
+| Alias                    | Description                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------- |
+| `amend`                  | Amend the last commit                                                                               |
+| `crush`                  | Amend and push the last commit                                                                      |
+| `undo`                   | Undo the last commit                                                                                |
+| `clean`                  | Restore the last commit                                                                             |
+| `ignore <file>`          | Ignore specified file                                                                               |
+| `renameTag <tag>`        | Rename the specified tag                                                                            |
+| `initFrom <repo> <path>` | Initialize a new repository from the specified repository in specified directory                    |
+| `histo`                  | Show git history                                                                                    |
+| `conflicts`              | Show git conflicts                                                                                  |
+| `hibernate`              | Remove all ignored files (but keep untracked ones)                                                  |
+| `fixup [commit]`         | Edit the specified commit message. List relevant commits and ask for one if no commit is specified. |
+| `align`                  | Align working directory _files_ with the last _pushed_ commit                                       |
+| `sync`                   | Align working directory _state_ with the last _pushed_ commit                                       |
+| `integrate`              | Align working directory _state_ with the last _local_ commit                                        |
 
 ## Usage
 
 Manage your commits with the usual `git commit` as hooks are configured to handle your commit message with commitlint and commitizen + devmoji
-
-```shell
 
 Call git aliases with `git <alias> [args]`
 
