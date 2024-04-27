@@ -1,13 +1,15 @@
 /** @format */
 
 import os from 'os'
-import { simpleGit } from 'simple-git'
-import chalk from 'chalk'
-import fs from 'fs'
 import { dirname, resolve } from 'path'
 import { fileURLToPath } from 'url'
-import path from 'path'
+import chalk from 'chalk'
 import { execSync } from 'child_process'
+import { simpleGit } from 'simple-git'
+import fs from 'fs'
+
+import loadGitAliases from './alias.js'
+import loadGitConfig from './config.js'
 
 // Determine the machine type
 let machine
@@ -64,42 +66,12 @@ if (machine === 'MinGw') {
     )
 }
 
-// Configure git globally for all platforms
-console.log(chalk.blue('Configuring git globally for all platforms...'))
-
-// Add your string based configuration here
-git.addConfig('core.editor', 'code --wait')
-git.addConfig('core.autocrlf', 'input')
-
 // Get the directory of this script
 const scriptsDir = dirname(fileURLToPath(import.meta.url))
 
-// Configure git aliases according to aliases in the aliases.json file
-console.log(chalk.blue('Configuring git aliases according to aliases.json...'))
+// Configure git globally for all platforms
+console.log(chalk.blue('Configuring git globally for all platforms...'))
+loadGitConfig('config.json', scriptsDir)
 
-// Read the aliases.json file
-const aliases = JSON.parse(
-    fs.readFileSync(resolve(scriptsDir, 'alias.json'), 'utf8')
-)
-
-// Add aliases
-Object.keys(aliases).forEach((alias) => {
-    console.log(chalk.yellow(`Adding alias for ${alias}  ...`))
-    git.addConfig(`alias.${alias}`, `!sh -c "${aliases[alias]}" - `)
-})
-
-// Configure git aliases for scripts in folder
-console.log(chalk.blue('Configuring git aliases for scripts in folder...'))
-
-// Add aliases for all scripts in the folder
-fs.readdirSync(scriptsDir)
-    .filter((file) => file.startsWith('_') && file.endsWith('.sh'))
-    .forEach((file) => {
-        const alias = path.basename(file, '.sh').substring(1)
-        const script = path.join(scriptsDir, file)
-        console.log(chalk.yellow(`Adding alias for ${alias} to ${script} ...`))
-        git.addConfig(
-            `alias.${alias}`,
-            `!sh -c "$(readlink -f '${script}') $* " - `
-        )
-    })
+console.log(chalk.blue('Configuring git aliases...'))
+loadGitAliases('alias.json', scriptsDir)

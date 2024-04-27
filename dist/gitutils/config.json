@@ -1,0 +1,23 @@
+{
+    "gitflow": {
+        "branch": {
+            "master": "main",
+            "develop": "develop"
+        },
+        "prefix": {
+            "feature": "feature/",
+            "bugfix": "bugfix/",
+            "release": "release/",
+            "hotfix": "hotfix/",
+            "support": "support/",
+            "versiontag": "v"
+        },
+        "path": {
+            "hooks": ".husky/_"
+        }
+    },
+    "core": {
+        "editor": "code --wait",
+        "autocrlf": "input"
+    }
+}
