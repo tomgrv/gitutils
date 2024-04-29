@@ -1,7 +1,7 @@
 {
     "name": "@tomgrv/devutils",
     "version": "0.0.6",
-    "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, standard-version, and more",
+    "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
     "type": "module",
     "bin": {
         "devutils": "node ./index.js"
@@ -10,6 +10,8 @@
         "config": "node ./index.js",
         "postinstall": "npm run config",
         "lint": "lint-staged",
+        "publish": "git flow release end -m Release As: $(git gversion /config .gitversion /showvariable MajorMinorPatch)",
+        "release": "git flow release start $(git gversion /config .gitversion /showvariable SemVer)",
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root"
     },
@@ -89,7 +91,7 @@
         "husky": "^9.0.11",
         "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
-        "standard-version": "^9.5.0"
+        "release-please": "^16.10.2"
     },
     "git-precommit-checks": {
         "rules": [

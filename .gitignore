@@ -38,4 +38,5 @@ Homestead.yaml
 .vscode/extensions.json
 /.vscode
 /.husky
+/.gitversion
 /.gitutils
