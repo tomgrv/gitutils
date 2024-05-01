@@ -3,7 +3,7 @@ export PATH=/usr/bin:$PATH
 . "$(dirname "$0")/_/husky.sh"
 
 # Enable colors
-if command -v tty >/dev/null 2>&1; then
+if [ -t 1 ]; then
   exec >/dev/tty 2>&1
 fi
 
