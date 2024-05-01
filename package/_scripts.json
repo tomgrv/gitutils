@@ -1,6 +1,13 @@
 {
     "scripts": {
         "update": "npx npm-check-updates -i -u",
-        "update-all": "npm run update -ws --root"
+        "update-all": "npm run update -ws --root",
+        "publish-prod": "git flow release finish beta --push",
+        "publish-beta": "git flow release start beta && npm run release"
+    },
+    "commit-and-tag-version": {
+        "scripts": {
+            "prebump": "git bump-version"
+        }
     }
 }

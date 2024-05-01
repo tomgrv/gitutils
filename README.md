@@ -23,8 +23,9 @@ Configure developpement environnement in one step with:
 -   husky
 -   lint-staged
 -   prettier
--   standard-version
+-   npx commit-and-tag-version
 -   git-flow
+-   gitversion
 
 ## Installation
 

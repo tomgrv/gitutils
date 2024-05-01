@@ -1,6 +1,6 @@
 {
     "name": "@tomgrv/devutils",
-    "version": "0.0.6",
+    "version": "0.4.0",
     "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
     "type": "module",
     "bin": {
@@ -8,8 +8,10 @@
     },
     "scripts": {
         "config": "node ./index.js",
-        "postinstall": "npm run config",
         "lint": "lint-staged",
+        "publish-beta": "git flow release start beta && npm run release",
+        "publish-prod": "git flow release finish beta --push",
+        "release": "npx commit-and-tag-version --no-verify",
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root"
     },
@@ -82,30 +84,16 @@
         "@commitlint/config-conventional": "^19.2.2",
         "@commitlint/core": "^19.2.2",
         "@commitlint/cz-commitlint": "^19.2.0",
+        "commit-and-tag-version": "^12.4.1",
         "commitizen": "^4.3.0",
         "conventional-changelog-cli": "^2.1.1",
         "devmoji": "^2.3.0",
         "git-precommit-checks": "3.1.0",
         "husky": "^9.0.11",
         "lint-staged": "^15.2.2",
-        "prettier": "^3.2.5",
-        "release-please": "^16.10.2"
+        "prettier": "^3.2.5"
     },
-    "git-precommit-checks": {
-        "rules": [
-            {
-                "message": "You've got leftover conflict markers",
-                "regex": "/^[<>|=]{4,}/m"
-            },
-            {
-                "filter": "(^package\\.json|\\.git-precommit-checks.json)$",
-                "message": "You have unfinished devs",
-                "nonBlocking": "true",
-                "regex": "(?:FIXME|TODO)"
-            }
-        ]
-    },
-    "standard-version": {
+    "commit-and-tag-version": {
         "bumpFiles": [
             {
                 "filename": "composer.json",
@@ -118,6 +106,57 @@
             {
                 "filename": "VERSION",
                 "type": "plain-text"
+            }
+        ],
+        "scripts": {
+            "prebump": "git bump-version"
+        },
+        "types": [
+            {
+                "type": "feat",
+                "section": "Features"
+            },
+            {
+                "type": "fix",
+                "section": "Bug Fixes"
+            },
+            {
+                "type": "chore",
+                "hidden": true
+            },
+            {
+                "type": "docs",
+                "hidden": true
+            },
+            {
+                "type": "style",
+                "hidden": true
+            },
+            {
+                "type": "refactor",
+                "hidden": true
+            },
+            {
+                "type": "perf",
+                "hidden": true
+            },
+            {
+                "type": "test",
+                "hidden": true
+            }
+        ]
+    },
+    "git-precommit-checks": {
+        "rules": [
+            {
+                "message": "You've got leftover conflict markers",
+                "regex": "/^[<>|=]{4,}/m"
+            },
+            {
+                "filter": "(^package\\.json|\\.git-precommit-checks.json)$",
+                "message": "You have unfinished devs",
+                "nonBlocking": "true",
+                "regex": "(?:FIXME|TODO)"
             }
         ]
     }

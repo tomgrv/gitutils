@@ -62,7 +62,8 @@ if (machine === 'MinGw') {
     // Install gitflow
     console.log(chalk.blue('Installing gitflow...'))
     execSync(
-        'curl -sSL https://raw.github.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh | bash -s install stable'
+        'cd $TMP; curl -sSL https://raw.github.com/petervanderdoes/gitflow-avh/develop/contrib/gitflow-installer.sh | bash -s install stable',
+        { stdio: 'inherit' }
     )
 }
 

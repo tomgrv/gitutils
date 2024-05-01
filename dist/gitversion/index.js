@@ -30,7 +30,7 @@ if (machine === 'Mac') {
     try {
         execSync('brew install gitversion', { stdio: 'inherit' })
         git.addConfig(
-            'alias.gitversion',
+            'alias.bump-version',
             '!gitversion -config .gitversion -showvariable MajorMinorPatch'
         )
         git.addConfig(
@@ -40,7 +40,7 @@ if (machine === 'Mac') {
     } catch {
         execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
         git.addConfig(
-            'alias.gitversion',
+            'alias.bump-version',
             '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
         )
         git.addConfig(
@@ -56,7 +56,7 @@ if (machine === 'Linux') {
     try {
         execSync('brew install gitversion', { stdio: 'inherit' })
         git.addConfig(
-            'alias.gitversion',
+            'alias.bump-version',
             '!gitversion -config .gitversion -showvariable MajorMinorPatch'
         )
         git.addConfig(
@@ -66,7 +66,7 @@ if (machine === 'Linux') {
     } catch {
         execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
         git.addConfig(
-            'alias.gitversion',
+            'alias.bump-version',
             '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
         )
         git.addConfig(
@@ -82,7 +82,7 @@ if (machine === 'MinGw') {
     try {
         execSync('winget install gitversion', { stdio: 'inherit' })
         git.addConfig(
-            'alias.gitversion',
+            'alias.bump-version',
             '!gitversion -config .gitversion -showvariable MajorMinorPatch'
         )
         git.addConfig(
@@ -92,7 +92,7 @@ if (machine === 'MinGw') {
     } catch {
         execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
         git.addConfig(
-            'alias.gitversion',
+            'alias.bump-version',
             '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
         )
         git.addConfig(
@@ -101,14 +101,3 @@ if (machine === 'MinGw') {
         )
     }
 }
-
-// Configure repo for gitflow
-console.log(chalk.blue('Configuring gitflow for gitversion...'))
-git.addConfig(
-    'alias.release',
-    '!sh -c "git flow release start $(git gitversion)" -'
-)
-git.addConfig(
-    'alias.publish',
-    '!sh -c "git flow release finish -m "Release As: $(git gitversion)"  $(git gitversion)" -'
-)
