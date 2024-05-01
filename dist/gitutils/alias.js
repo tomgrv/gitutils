@@ -19,7 +19,10 @@ const loadGitAliases = (jsonFile, scriptsDir) => {
 
     // Add aliases
     Object.keys(config).forEach((alias) => {
+        // Display the alias
         console.log(chalk.yellow(`Adding alias for ${alias}  ...`))
+
+        // Add the alias
         git.addConfig(`alias.${alias}`, `!sh -c "${config[alias]}" - `)
     })
 
@@ -30,15 +33,23 @@ const loadGitAliases = (jsonFile, scriptsDir) => {
     fs.readdirSync(scriptsDir)
         .filter((file) => file.startsWith('_') && file.endsWith('.sh'))
         .forEach((file) => {
+            // Extract the alias and script
             const alias = path.basename(file, '.sh').substring(1)
             const script = path.join(scriptsDir, file)
+
+            // Display the alias and script
             console.log(
                 chalk.yellow(`Adding alias for ${alias} to ${script} ...`)
             )
+
+            // Add the alias
             git.addConfig(
                 `alias.${alias}`,
                 `!sh -c "$(readlink -f '${script}') $* " - `
             )
+
+            // Make the script executable
+            fs.chmodSync(script, '755')
         })
 }
 

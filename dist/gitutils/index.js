@@ -40,7 +40,7 @@ if (machine === 'Mac') {
     // Add your Mac-specific configuration here
     // Install gitflow
     console.log(chalk.blue('Installing gitflow...'))
-    execSync('npm i -g gitflow', { stdio: 'inherit' })
+    execSync('npm list -g gitflow || npm i -g gitflow', { stdio: 'inherit' })
 }
 
 // Configure repo for Linux
@@ -50,7 +50,7 @@ if (machine === 'Linux') {
     // Add your Linux-specific configuration here
     // Install gitflow
     console.log(chalk.blue('Installing gitflow...'))
-    execSync('npm i -g gitflow', { stdio: 'inherit' })
+    execSync('npm list -g gitflow || npm i -g gitflow', { stdio: 'inherit' })
 }
 
 // Configure repo for MinGw/Windows
