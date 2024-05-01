@@ -19,7 +19,7 @@ isRebase() {
 
 # Check if the current Git command is a rebase
 if test "$GIT_COMMAND" = "rebase"; then
-  echo -e "\e[32m✔\e[0m  Skip post-checkout hook during rebase."
+  npx chalk-cli --no-stdin -t "{green ✔} Skip post-checkout hook during rebase."
   exit 0
 fi
 
@@ -30,7 +30,12 @@ fi
 
 # Run npm install if package-lock.json changed
 if isChanged 'package-lock.json' && ! isRebase; then
-  npm install
+  WORKSP=$(cat package.json | npx jqn '.workspaces' | tr -d "'[]:")
+  if test "$WORKSP" = "undefined"; then
+    npm install
+  else
+    npm install --ws --if-present --include-workspace-root
+  fi
 fi
 
 # Configure git utils if config.sh changed

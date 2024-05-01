@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "update": "npx npm-check-updates -i -u",
+        "update-all": "npm run update -ws --root"
+    }
+}
