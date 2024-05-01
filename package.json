@@ -9,9 +9,9 @@
     "scripts": {
         "config": "node ./index.js",
         "lint": "lint-staged",
-        "publish-beta": "git flow release start beta && npm run release",
-        "publish-prod": "git flow release finish beta --push",
-        "release": "npx commit-and-tag-version --no-verify",
+        "publish-beta": "bash -c 'git flow release start beta && npm run release --skip.tag'",
+        "publish-prod": "bash -c 'git flow release finish beta --tagname $(git bump-version) --push'",
+        "release": "npx commit-and-tag-version --no-verify --",
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root"
     },
