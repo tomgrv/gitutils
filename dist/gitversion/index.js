@@ -110,5 +110,5 @@ git.addConfig(
 )
 git.addConfig(
     'alias.publish',
-    '!sh -c "git flow release end -m "Release As: $(git gitversion)"" -'
+    '!sh -c "git flow release finish -m "Release As: $(git gitversion)"  $(git gitversion)" -'
 )

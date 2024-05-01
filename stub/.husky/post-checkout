@@ -30,7 +30,12 @@ fi
 
 # Run npm install if package-lock.json changed
 if isChanged 'package-lock.json' && ! isRebase; then
-  npm install --ws --if-present --include-workspace-root
+  WORKSP=$(cat package.json | npx jqn '.workspaces' | tr -d "'[]:")
+  if test "$WORKSP" = "undefined"; then
+    npm install
+  else
+    npm install --ws --if-present --include-workspace-root
+  fi
 fi
 
 # Configure git utils if config.sh changed
