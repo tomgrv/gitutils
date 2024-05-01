@@ -10,8 +10,6 @@
         "config": "node ./index.js",
         "postinstall": "npm run config",
         "lint": "lint-staged",
-        "publish": "git flow release end -m Release As: $(git gversion /config .gitversion /showvariable MajorMinorPatch)",
-        "release": "git flow release start $(git gversion /config .gitversion /showvariable SemVer)",
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root"
     },

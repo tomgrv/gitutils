@@ -29,10 +29,24 @@ if (machine === 'Mac') {
     console.log(chalk.blue('Configuring gitversion for Mac...'))
     try {
         execSync('brew install gitversion', { stdio: 'inherit' })
-        git.addConfig('alias.gversion', '!gitversion')
+        git.addConfig(
+            'alias.gitversion',
+            '!gitversion -config .gitversion -showvariable MajorMinorPatch'
+        )
+        git.addConfig(
+            'alias.semver',
+            '!gitversion -config .gitversion -showvariable SemVer'
+        )
     } catch {
         execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
-        git.addConfig('alias.gversion', '!dotnet-gitversion')
+        git.addConfig(
+            'alias.gitversion',
+            '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
+        )
+        git.addConfig(
+            'alias.semver',
+            '!dotnet-gitversion -config .gitversion -showvariable SemVer'
+        )
     }
 }
 
@@ -41,21 +55,60 @@ if (machine === 'Linux') {
     console.log(chalk.blue('Configuring gitversion for Linux...'))
     try {
         execSync('brew install gitversion', { stdio: 'inherit' })
-        git.addConfig('alias.gversion', '!gitversion')
+        git.addConfig(
+            'alias.gitversion',
+            '!gitversion -config .gitversion -showvariable MajorMinorPatch'
+        )
+        git.addConfig(
+            'alias.semver',
+            '!gitversion -config .gitversion -showvariable SemVer'
+        )
     } catch {
         execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
-        git.addConfig('alias.gversion', '!dotnet-gitversion')
+        git.addConfig(
+            'alias.gitversion',
+            '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
+        )
+        git.addConfig(
+            'alias.semver',
+            '!dotnet-gitversion -config .gitversion -showvariable SemVer'
+        )
     }
 }
 
 // Configure repo for MinGw/Windows
 if (machine === 'MinGw') {
-    console.log(chalk.blue('Configuring gitversion for Mac...'))
+    console.log(chalk.blue('Configuring gitversion for MinGw...'))
     try {
         execSync('winget install gitversion', { stdio: 'inherit' })
-        git.addConfig('alias.gversion', '!gitversion')
+        git.addConfig(
+            'alias.gitversion',
+            '!gitversion -config .gitversion -showvariable MajorMinorPatch'
+        )
+        git.addConfig(
+            'alias.semver',
+            '!gitversion -config .gitversion -showvariable SemVer'
+        )
     } catch {
         execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
-        git.addConfig('alias.gversion', '!dotnet-gitversion')
+        git.addConfig(
+            'alias.gitversion',
+            '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
+        )
+        git.addConfig(
+            'alias.semver',
+            '!dotnet-gitversion -config .gitversion -showvariable SemVer'
+        )
     }
 }
+
+// Configure repo for gitflow
+console.log(chalk.blue('Configuring gitflow for gitversion...'))
+git.addConfig(
+    'alias.release',
+    '!sh -c "git flow release start $(git gitversion)" -'
+)
+git.addConfig(
+    'alias.publish',
+    '!sh -c "git flow release end -m "Release As: $(git gitversion)"" -'
+)
