@@ -8,7 +8,6 @@
     },
     "scripts": {
         "config": "node ./index.js",
-        "postinstall": "npm run config",
         "lint": "lint-staged",
         "publish-beta": "git flow release start beta && npm run release",
         "publish-prod": "git flow release finish beta --push",
