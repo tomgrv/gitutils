@@ -1,6 +1,6 @@
 {
     "name": "@tomgrv/devutils",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
     "type": "module",
     "bin": {
@@ -9,8 +9,8 @@
     "scripts": {
         "config": "node ./index.js",
         "lint": "lint-staged",
-        "publish-beta": "bash -c 'GBV=$(git bump-version | tee .git/RELEASE); git flow release start $GBV && npm run release --skip.tag' ",
-        "publish-prod": "bash -c 'GBV=$(git bump-version); git flow release finish $(cat .git/RELEASE) --tagname $GBV --message $GBV --push'",
+        "publish-beta": "git release-beta",
+        "publish-prod": "git release-prod",
         "release": "npx commit-and-tag-version --no-verify --",
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root"
