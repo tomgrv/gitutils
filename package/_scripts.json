@@ -2,8 +2,8 @@
     "scripts": {
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root",
-        "publish-prod": "git flow release finish beta --push",
-        "publish-beta": "git flow release start beta && npm run release"
+        "publish-beta": "bash -c 'GBV=$(git bump-version | tee .git/RELEASE); git flow release start $GBV && npm run release --skip.tag' ",
+        "publish-prod": "bash -c 'GBV=$(git bump-version); git flow release finish $(cat .git/RELEASE) --tagname $GBV --message $GBV --push'"
     },
     "commit-and-tag-version": {
         "scripts": {
