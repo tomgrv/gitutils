@@ -13,5 +13,6 @@
     "clean": "git reset --hard HEAD --",
     "undo": "git reset --soft HEAD^ --",
     "crush": "git amend --no-verify && git push --force",
-    "amend": "git diff-index --cached --quiet HEAD || git commit --amend -C HEAD $*"
+    "amend": "git diff-index --cached --quiet HEAD || git commit --amend -C HEAD $*",
+    "co": "git commit --no-edit --all $*"
 }
