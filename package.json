@@ -7,11 +7,12 @@
         "devutils": "node ./index.js"
     },
     "scripts": {
-        "config": "node ./index.js",
+        "init": "node ./index.js",
         "lint": "lint-staged",
         "publish-beta": "git release-beta",
         "publish-prod": "git release-prod",
         "release": "npx commit-and-tag-version --no-verify --",
+        "test": "echo \"Warning: no test specified\"",
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root"
     },

@@ -1,13 +1,13 @@
 ## Modules
-node_modules
+/node_modules
 **/node_modules
 
 ## Storage
-public/storage
-storage
+/public/storage
+./storage
 
 ## Composer
-vendor
+/vendor
 **/vendor
 _ide_helper.php
 
@@ -27,6 +27,7 @@ Homestead.yaml
 ## Misc
 .history
 .version.json
+/.mono
 
 ## Diff
 .rej
