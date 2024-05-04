@@ -4,6 +4,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.7.0](https://github.com/tomgrv/devutils/compare/v0.6.0...v0.7.0) (2024-05-04)
+
+
+### Features
+
+* **config:** ✨ ⚙️ add git alias ([b607dc8](https://github.com/tomgrv/devutils/commit/b607dc8a8e38378fc99ed1f7e9b78fda3857ed77))
+* **release:** Add publish workflow ([9edb393](https://github.com/tomgrv/devutils/commit/9edb3932b12f862f974c77a611da79b6db1e2e62))
+
+
+### Bug Fixes
+
+* **config:** 🐛 ⚙️ improve flow release ([d930b40](https://github.com/tomgrv/devutils/commit/d930b40407d55b0b74fbff0c3325fc9838cce342))
+
 ## [0.6.0](https://github.com/tomgrv/devutils/compare/v0.5.0...v0.6.0) (2024-05-02)
 
 ### Features
