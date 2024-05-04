@@ -7,7 +7,7 @@ cd "$(git rev-parse --show-toplevel)" >/dev/null
 GBV=$(git bump-version | tee .git/RELEASE)
 
 #### START RELEASE
-git flow release start $GBV && npx commit-and-tag-version --skip.tag
+git flow release start $GBV && npx commit-and-tag-version --skip.tag --no-verify
 
 #### BACK
 cd - >/dev/null
