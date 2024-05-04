@@ -68,7 +68,15 @@
         "semi": false,
         "singleQuote": true,
         "tabWidth": 4,
-        "trailingComma": "es5"
+        "trailingComma": "es5",
+        "overrides": [
+            {
+                "files": "*.md",
+                "options": {
+                    "tabWidth": 2
+                }
+            }
+        ]
     },
     "dependencies": {
         "chalk": "^5.3.0",
