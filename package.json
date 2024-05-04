@@ -4,7 +4,7 @@
     "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
     "type": "module",
     "bin": {
-        "devutils": "node ./index.js"
+        "devutils": "./index.js"
     },
     "scripts": {
         "init": "node ./index.js",
