@@ -4,105 +4,22 @@
     "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
     "type": "module",
     "bin": {
-        "devutils": "./index.js"
+        "devutils": "./install.sh"
     },
     "scripts": {
-        "init": "node ./index.js",
-        "lint": "lint-staged",
+        "update": "npx npm-check-updates -i -u",
+        "update-all": "npm run update -ws --root",
         "publish-beta": "git release-beta",
         "publish-prod": "git release-prod",
-        "release": "npx commit-and-tag-version --no-verify --",
         "test": "echo \"Warning: no test specified\"",
-        "update": "npx npm-check-updates -i -u",
-        "update-all": "npm run update -ws --root"
-    },
-    "commitlint": {
-        "extends": [
-            "@commitlint/config-conventional"
-        ],
-        "rules": {
-            "subject-case": [
-                2,
-                "never",
-                [
-                    "start-case",
-                    "pascal-case",
-                    "upper-case"
-                ]
-            ],
-            "scope-enum": [
-                2,
-                "always",
-                [
-                    "deps",
-                    "release",
-                    "security",
-                    "i18n",
-                    "config",
-                    "add",
-                    "remove",
-                    "breaking",
-                    "modules",
-                    "packages",
-                    "ui-ux",
-                    "api",
-                    "model"
-                ]
-            ]
-        }
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx,md,html,css,json,vue, yaml, yml}": [
-            "prettier --write"
-        ],
-        "*.php": [
-            "composer lint"
-        ]
-    },
-    "config": {
-        "commitizen": {
-            "path": "@commitlint/cz-commitlint"
-        }
-    },
-    "prettier": {
-        "insertPragma": true,
-        "semi": false,
-        "singleQuote": true,
-        "tabWidth": 4,
-        "trailingComma": "es5",
-        "overrides": [
-            {
-                "files": "*.md",
-                "options": {
-                    "tabWidth": 2
-                }
-            }
-        ]
-    },
-    "dependencies": {
-        "chalk": "^5.3.0",
-        "chalk-cli": "^5.0.1",
-        "flat": "^6.0.1",
-        "fs-extra": "^11.2.0",
-        "glob": "^10.3.12",
-        "merge-packages": "^0.1.6",
-        "simple-git": "^3.24.0"
-    },
-    "peerDependencies": {
-        "@commitlint/cli": "^19.2.2",
-        "@commitlint/config-conventional": "^19.2.2",
-        "@commitlint/core": "^19.2.2",
-        "@commitlint/cz-commitlint": "^19.2.0",
-        "commit-and-tag-version": "^12.4.1",
-        "commitizen": "^4.3.0",
-        "conventional-changelog-cli": "^2.1.1",
-        "devmoji": "^2.3.0",
-        "git-precommit-checks": "3.1.0",
-        "husky": "^9.0.11",
-        "lint-staged": "^15.2.2",
-        "prettier": "^3.2.5"
+        "lint": "lint-staged",
+        "release": "npx commit-and-tag-version --no-verify --",
+        "init": "sh ./index.sh"
     },
     "commit-and-tag-version": {
+        "scripts": {
+            "prebump": "gitversion -config .gitversion -showvariable MajorMinorPatch"
+        },
         "bumpFiles": [
             {
                 "filename": "composer.json",
@@ -117,9 +34,6 @@
                 "type": "plain-text"
             }
         ],
-        "scripts": {
-            "prebump": "git bump-version"
-        },
         "types": [
             {
                 "type": "feat",
@@ -155,6 +69,21 @@
             }
         ]
     },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "insertPragma": true
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,md,html,css,json,vue, yaml, yml}": [
+            "prettier --write"
+        ],
+        "*.php": [
+            "composer lint"
+        ]
+    },
     "git-precommit-checks": {
         "rules": [
             {
@@ -168,5 +97,45 @@
                 "regex": "(?:FIXME|TODO)"
             }
         ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "@commitlint/cz-commitlint"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "subject-case": [
+                2,
+                "never",
+                [
+                    "start-case",
+                    "pascal-case",
+                    "upper-case"
+                ]
+            ],
+            "scope-enum": [
+                2,
+                "always",
+                [
+                    "deps",
+                    "release",
+                    "security",
+                    "i18n",
+                    "config",
+                    "add",
+                    "remove",
+                    "breaking",
+                    "modules",
+                    "packages",
+                    "ui-ux",
+                    "api",
+                    "model"
+                ]
+            ]
+        }
     }
 }

@@ -37,9 +37,3 @@ if isChanged 'package-lock.json' && ! isRebase; then
     npm install --ws --if-present --include-workspace-root || true
   fi
 fi
-
-# Configure git utils if config.sh changed
-if isChanged '.gitutils/config.sh' && ! isRebase; then
-  chmod +x .gitutils/*.sh
-  .gitutils/config.sh
-fi

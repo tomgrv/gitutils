@@ -4,7 +4,7 @@
 cd "$(git rev-parse --show-toplevel)" >/dev/null
 
 #### GET BUMP VERSION
-GBV=$(dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch)
+GBV=$(~/.dotnet/tools/dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch)
 
 #### UPDATE VERSION & CHANGELOG
 npx commit-and-tag-version --skip.tag --no-verify --release-as $GBV
