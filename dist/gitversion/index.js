@@ -8,6 +8,27 @@ import { simpleGit } from 'simple-git'
 // Initialize git
 const git = simpleGit(process.cwd())
 
+// Install & configure gitversion
+function configureGitVersion(installCommand, runCommand) {
+    var status = true
+
+    try {
+        execSync(installCommand, { stdio: 'inherit' })
+        git.addConfig(
+            'alias.bump-version',
+            `!${runCommand} -config .gitversion -showvariable MajorMinorPatch`
+        )
+        git.addConfig(
+            'alias.semver',
+            `!${runCommand} -config .gitversion -showvariable SemVer`
+        )
+    } catch {
+        status = false
+    }
+
+    return status
+}
+
 // Determine the machine type
 let machine
 switch (os.type()) {
@@ -27,25 +48,10 @@ switch (os.type()) {
 // Install & configure gitversion
 if (machine === 'Mac') {
     console.log(chalk.blue('Configuring gitversion for Mac...'))
-    try {
-        execSync('brew install gitversion', { stdio: 'inherit' })
-        git.addConfig(
-            'alias.bump-version',
-            '!gitversion -config .gitversion -showvariable MajorMinorPatch'
-        )
-        git.addConfig(
-            'alias.semver',
-            '!gitversion -config .gitversion -showvariable SemVer'
-        )
-    } catch {
-        execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
-        git.addConfig(
-            'alias.bump-version',
-            '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
-        )
-        git.addConfig(
-            'alias.semver',
-            '!dotnet-gitversion -config .gitversion -showvariable SemVer'
+    if (!configureGitVersion('brew install gitversion', 'gitversion')) {
+        configureGitVersion(
+            'dotnet-gitversion -version || dotnet tool install -g GitVersion.Tool',
+            'dotnet-gitversion'
         )
     }
 }
@@ -53,25 +59,10 @@ if (machine === 'Mac') {
 // Configure repo for Linux
 if (machine === 'Linux') {
     console.log(chalk.blue('Configuring gitversion for Linux...'))
-    try {
-        execSync('brew install gitversion', { stdio: 'inherit' })
-        git.addConfig(
-            'alias.bump-version',
-            '!gitversion -config .gitversion -showvariable MajorMinorPatch'
-        )
-        git.addConfig(
-            'alias.semver',
-            '!gitversion -config .gitversion -showvariable SemVer'
-        )
-    } catch {
-        execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
-        git.addConfig(
-            'alias.bump-version',
-            '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
-        )
-        git.addConfig(
-            'alias.semver',
-            '!dotnet-gitversion -config .gitversion -showvariable SemVer'
+    if (!configureGitVersion('brew install gitversion', 'gitversion')) {
+        configureGitVersion(
+            'dotnet-gitversion -version || dotnet tool install -g GitVersion.Tool',
+            'dotnet-gitversion'
         )
     }
 }
@@ -79,25 +70,10 @@ if (machine === 'Linux') {
 // Configure repo for MinGw/Windows
 if (machine === 'MinGw') {
     console.log(chalk.blue('Configuring gitversion for MinGw...'))
-    try {
-        execSync('winget install gitversion', { stdio: 'inherit' })
-        git.addConfig(
-            'alias.bump-version',
-            '!gitversion -config .gitversion -showvariable MajorMinorPatch'
-        )
-        git.addConfig(
-            'alias.semver',
-            '!gitversion -config .gitversion -showvariable SemVer'
-        )
-    } catch {
-        execSync('dotnet tool install -g GitVersion.Tool', { stdio: 'inherit' })
-        git.addConfig(
-            'alias.bump-version',
-            '!dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch'
-        )
-        git.addConfig(
-            'alias.semver',
-            '!dotnet-gitversion -config .gitversion -showvariable SemVer'
+    if (!configureGitVersion('winget install gitversion', 'gitversion')) {
+        configureGitVersion(
+            'dotnet-gitversion -version >/dev/null || dotnet tool install -g GitVersion.Tool',
+            'dotnet-gitversion'
         )
     }
 }

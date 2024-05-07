@@ -35,7 +35,7 @@ const git = simpleGit(process.cwd())
 
 // Configure repo for Mac
 if (machine === 'Mac') {
-    console.log(chalk.blue('Configuring git for Mac...'))
+    console.log(chalk.blue('Configuring gitflow for Mac...'))
 
     // Add your Mac-specific configuration here
     // Install gitflow
@@ -45,7 +45,7 @@ if (machine === 'Mac') {
 
 // Configure repo for Linux
 if (machine === 'Linux') {
-    console.log(chalk.blue('Configuring git for Linux...'))
+    console.log(chalk.blue('Configuring gitflow for Linux...'))
 
     // Add your Linux-specific configuration here
     // Install gitflow
@@ -55,7 +55,7 @@ if (machine === 'Linux') {
 
 // Configure repo for MinGw/Windows
 if (machine === 'MinGw') {
-    console.log(chalk.blue('Configuring git for MinGw...'))
+    console.log(chalk.blue('Configuring gitflow for MinGw...'))
     git.addConfig('core.filemode', 'false')
     git.addConfig('credential.helper', 'wincred')
 
