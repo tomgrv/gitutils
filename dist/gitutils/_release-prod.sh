@@ -4,7 +4,10 @@
 cd "$(git rev-parse --show-toplevel)" >/dev/null
 
 #### GET BUMP VERSION
-GBV=$(git bump-version)
+GBV=$(dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch)
+
+#### UPDATE VERSION & CHANGELOG
+npx commit-and-tag-version --skip.tag --no-verify --release-as $GBV
 
 #### FINISH RELEASE
 git flow release finish $(cat .git/RELEASE) --tagname $GBV --message $GBV --push && rm .git/RELEASE

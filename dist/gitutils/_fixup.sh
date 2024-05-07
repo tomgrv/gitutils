@@ -37,7 +37,7 @@ if ! git isFixup; then
 	echo 'Fixup commit given:' $sha
 
 	## Create fixup commit and exit if commit is not done
-	if ! git commit --fixup $sha; then
+	if ! git commit --fixup $sha --no-verify; then
 		echo 'Fixup commit failed...'
 		exit 1
 	fi

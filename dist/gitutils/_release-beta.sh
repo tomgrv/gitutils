@@ -4,10 +4,10 @@
 cd "$(git rev-parse --show-toplevel)" >/dev/null
 
 #### GET BUMP VERSION
-GBV=$(git bump-version | tee .git/RELEASE)
+GBV=$(dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch | tee .git/RELEASE)
 
 #### START RELEASE
-git flow release start $GBV && npx commit-and-tag-version --skip.tag --no-verify
+git flow release start $GBV
 
 #### BACK
 cd - >/dev/null
