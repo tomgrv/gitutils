@@ -32,7 +32,7 @@
     },
     "commit-and-tag-version": {
         "scripts": {
-            "prebump": "~/.dotnet/tools/dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch"
+            "prebump": "gitversion -config .gitversion -showvariable MajorMinorPatch"
         },
         "bumpFiles": [
             {
