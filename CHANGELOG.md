@@ -4,6 +4,22 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.8.1](///compare/v0.7.1...v0.8.1) (2024-05-08)
+
+
+### Features
+
+* ✨ add gitversion to workflow 3cd01f1
+* ✨ move to devcontainer f7894b9
+* **config:** ✨ ⚙️ update workflow 30bbc51
+
+
+### Bug Fixes
+
+* 🐛 fix package.json update 1ff14b2
+* 🐛 fix release scripts 4f82422
+* **config:** 🐛 ⚙️ cleanup container features b621351
+
 ## [0.7.0](https://github.com/tomgrv/devutils/compare/v0.6.0...v0.7.0) (2024-05-04)
 
 
