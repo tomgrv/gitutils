@@ -1,6 +1,6 @@
 {
     "sync": "git fetch --progress --prune --recurse-submodules=no origin && git stash save --keep-index --include-untracked && git merge --ff-only @{u} && git stash pop --index || git stash drop",
-    "align": "git reset --hard $(git rev-parse --abbrev-ref --symbolic-full-name @{u})",
+    "align": "git stash save --keep-index --include-untracked  && git reset --hard $(git rev-parse --abbrev-ref --symbolic-full-name @{u})",
     "conflict": "git diff --name-only --diff-filter=U",
     "isFixup": "git log -1 --pretty=%s | grep -q fixup! && exit 0 || exit 1",
     "isRebase": "git rev-parse --git-dir | grep -q rebase-merge || git rev-parse --git-dir | grep -q rebase-apply",
@@ -13,6 +13,7 @@
     "undo": "git reset --soft HEAD^ --",
     "crush": "git amend --no-verify && git push --force",
     "amend": "git diff-index --cached --quiet HEAD || git commit --amend --no-verify -C HEAD $*",
+    "continue": "git align && git rebase --continue",
     "co": "git commit --no-edit $*",
     "go": "git commit --no-edit --all $*"
 }

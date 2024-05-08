@@ -10,7 +10,7 @@ sudo cp -rupa ./stub/. .
 
 # find all file with a trailing slash outside dist folder, make sure they are added to .gitignore and remove the trailing slash
 echo "Add files to .gitignore" | npx chalk-cli --stdin blue
-for file in $(find . -type f -name "*#" -not -path "./stub/*"); do
+for file in $(find . -type f -name "*#" -not -path "./stub/*" -not -path "./node_modules/*" -not -path "./vendors/*"); do
 
     echo "Add $file to .gitignore" | npx chalk-cli --stdin yellow
 
