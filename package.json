@@ -1,6 +1,6 @@
 {
     "name": "@tomgrv/devutils",
-    "version": "0.8.2",
+    "version": "0.9.1",
     "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
     "type": "module",
     "bin": {
