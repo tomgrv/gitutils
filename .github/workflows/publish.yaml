@@ -71,7 +71,6 @@ jobs:
         with:
           node-version: "20"
       - run: npm ci
-      - run: npm version ${{ needs.planner.outputs.fullSemVer }}
       - run: npm test
       - name: Publish 
         uses: JS-DevTools/npm-publish@v3

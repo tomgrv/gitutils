@@ -4,6 +4,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.9.3](https://github.com/tomgrv/devutils/compare/v0.9.2...v0.9.3) (2024-05-08)
+
+
+### Bug Fixes
+
+* 🐛 correct npm version ([b4f32e0](https://github.com/tomgrv/devutils/commit/b4f32e067b7cee5ce59caac92463822e172fdcc8))
+
 ## [0.9.1](https://github.com/tomgrv/devutils/compare/v0.8.2...v0.9.1) (2024-05-08)
 
 
