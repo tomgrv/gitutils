@@ -6,14 +6,14 @@ cd "$(git rev-parse --show-toplevel)" >/dev/null
 #### CHECK IF ON A HOTFIX BRANCH, EXTRACT BRANCH NAME
 if [ -n "$(git branch --list hotfix/*)" ]; then
     flow=hotfix
-    name=$(git branch --list hotfix/*)
+    name=$(git branch --list hotfix/* | sed 's/.*hotfix\///')
     npx chalk-cli -t "{green ✔} Hotfix branch found: {yellow $name}"
 fi
 
 #### CHECK IF ON A RELEASE BRANCH, EXTRACT BRANCH NAME
 if [ -n "$(git branch --list release/*)" ]; then
     flow=release
-    name=$(git branch --list release/*)
+    name=$(git branch --list release/* | sed 's/.*release\///')
     npx chalk-cli -t "{green ✔} Release branch found: {blue $name}"
 fi
 
