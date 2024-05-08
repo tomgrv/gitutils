@@ -1,141 +1,155 @@
 {
-  "name": "@tomgrv/devutils",
-  "version": "0.8.1",
-  "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
-  "type": "module",
-  "bin": {
-    "devutils": "./install.sh"
-  },
-  "scripts": {
-    "update": "npx npm-check-updates -i -u",
-    "update-all": "npm run update -ws --root",
-    "publish-beta": "git release-beta",
-    "publish-prod": "git release-prod",
-    "test": "echo \"Warning: no test specified\"",
-    "lint": "lint-staged",
-    "release": "npx commit-and-tag-version --no-verify --",
-    "init": "sh ./index.sh"
-  },
-  "commit-and-tag-version": {
-    "scripts": {
-      "prebump": "~/.dotnet/tools/dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch"
+    "name": "@tomgrv/devutils",
+    "version": "0.8.2",
+    "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
+    "type": "module",
+    "bin": {
+        "devutils": "./install.sh"
     },
-    "bumpFiles": [
-      {
-        "filename": "composer.json",
-        "type": "json"
-      },
-      {
-        "filename": "package.json",
-        "type": "json"
-      },
-      {
-        "filename": "VERSION",
-        "type": "plain-text"
-      }
-    ],
-    "types": [
-      {
-        "type": "feat",
-        "section": "Features"
-      },
-      {
-        "type": "fix",
-        "section": "Bug Fixes"
-      },
-      {
-        "type": "chore",
-        "hidden": true
-      },
-      {
-        "type": "docs",
-        "hidden": true
-      },
-      {
-        "type": "style",
-        "hidden": true
-      },
-      {
-        "type": "refactor",
-        "hidden": true
-      },
-      {
-        "type": "perf",
-        "hidden": true
-      },
-      {
-        "type": "test",
-        "hidden": true
-      }
-    ]
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 4,
-    "semi": false,
-    "singleQuote": true,
-    "insertPragma": true
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,md,html,css,json,vue, yaml, yml}": [
-      "prettier --write"
-    ],
-    "*.php": [
-      "composer lint"
-    ]
-  },
-  "git-precommit-checks": {
-    "rules": [
-      {
-        "message": "You've got leftover conflict markers",
-        "regex": "/^[<>|=]{4,}/m"
-      },
-      {
-        "filter": "(^package\\.json|\\.git-precommit-checks.json)$",
-        "message": "You have unfinished devs",
-        "nonBlocking": "true",
-        "regex": "(?:FIXME|TODO)"
-      }
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "rules": {
-      "subject-case": [
-        2,
-        "never",
-        [
-          "start-case",
-          "pascal-case",
-          "upper-case"
+    "peerDependencies": {
+        "@commitlint/cli": "^19.2.2",
+        "@commitlint/config-conventional": "^19.2.2",
+        "@commitlint/core": "^19.2.2",
+        "@commitlint/cz-commitlint": "^19.2.0",
+        "commit-and-tag-version": "^12.4.1",
+        "commitizen": "^4.3.0",
+        "conventional-changelog-cli": "^2.1.1",
+        "devmoji": "^2.3.0",
+        "git-precommit-checks": "3.1.0",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
+        "prettier": "^3.2.5"
+    },
+    "scripts": {
+        "update": "npx npm-check-updates -i -u",
+        "update-all": "npm run update -ws --root",
+        "publish-beta": "git release-beta",
+        "publish-prod": "git release-prod",
+        "test": "echo \"Warning: no test specified\"",
+        "lint": "lint-staged",
+        "release": "npx commit-and-tag-version --no-verify --",
+        "init": "sh ./index.sh"
+    },
+    "commit-and-tag-version": {
+        "scripts": {
+            "prebump": "~/.dotnet/tools/dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch"
+        },
+        "bumpFiles": [
+            {
+                "filename": "composer.json",
+                "type": "json"
+            },
+            {
+                "filename": "package.json",
+                "type": "json"
+            },
+            {
+                "filename": "VERSION",
+                "type": "plain-text"
+            }
+        ],
+        "types": [
+            {
+                "type": "feat",
+                "section": "Features"
+            },
+            {
+                "type": "fix",
+                "section": "Bug Fixes"
+            },
+            {
+                "type": "chore",
+                "hidden": true
+            },
+            {
+                "type": "docs",
+                "hidden": true
+            },
+            {
+                "type": "style",
+                "hidden": true
+            },
+            {
+                "type": "refactor",
+                "hidden": true
+            },
+            {
+                "type": "perf",
+                "hidden": true
+            },
+            {
+                "type": "test",
+                "hidden": true
+            }
         ]
-      ],
-      "scope-enum": [
-        2,
-        "always",
-        [
-          "deps",
-          "release",
-          "security",
-          "i18n",
-          "config",
-          "add",
-          "remove",
-          "breaking",
-          "modules",
-          "packages",
-          "ui-ux",
-          "api",
-          "model"
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "insertPragma": true
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx,md,html,css,json,vue, yaml, yml}": [
+            "prettier --write"
+        ],
+        "*.php": [
+            "composer lint"
         ]
-      ]
+    },
+    "git-precommit-checks": {
+        "rules": [
+            {
+                "message": "You've got leftover conflict markers",
+                "regex": "/^[<>|=]{4,}/m"
+            },
+            {
+                "filter": "(^package\\.json|\\.git-precommit-checks.json)$",
+                "message": "You have unfinished devs",
+                "nonBlocking": "true",
+                "regex": "(?:FIXME|TODO)"
+            }
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "@commitlint/cz-commitlint"
+        }
+    },
+    "commitlint": {
+        "extends": [
+            "@commitlint/config-conventional"
+        ],
+        "rules": {
+            "subject-case": [
+                2,
+                "never",
+                [
+                    "start-case",
+                    "pascal-case",
+                    "upper-case"
+                ]
+            ],
+            "scope-enum": [
+                2,
+                "always",
+                [
+                    "deps",
+                    "release",
+                    "security",
+                    "i18n",
+                    "config",
+                    "add",
+                    "remove",
+                    "breaking",
+                    "modules",
+                    "packages",
+                    "ui-ux",
+                    "api",
+                    "model"
+                ]
+            ]
+        }
     }
-  }
 }
