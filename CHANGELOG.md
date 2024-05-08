@@ -4,6 +4,34 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.9.1](https://github.com/tomgrv/devutils/compare/v0.8.2...v0.9.1) (2024-05-08)
+
+
+### Features
+
+* ✨ support hotfix branches ([d2398b2](https://github.com/tomgrv/devutils/commit/d2398b2069fbbd07cd0343e10745620e39401e02))
+* **deps:** ✨ add act ([06a2380](https://github.com/tomgrv/devutils/commit/06a2380ac214819b49643f5c8818e4e429b682df))
+
+
+### Bug Fixes
+
+* 🐛 fix gitversion workflow ([49088e6](https://github.com/tomgrv/devutils/commit/49088e68594c2155c3bdadc786854b2c83dca188))
+* 🐛 fix release script ([b22c8ef](https://github.com/tomgrv/devutils/commit/b22c8efb83ab32e4b9184a60169c2217a583603a))
+
+## [0.9.1](https://github.com/tomgrv/devutils/compare/v0.8.2...v0.9.1) (2024-05-08)
+
+
+### Features
+
+* ✨ support hotfix branches ([d2398b2](https://github.com/tomgrv/devutils/commit/d2398b2069fbbd07cd0343e10745620e39401e02))
+* **deps:** ✨ add act ([06a2380](https://github.com/tomgrv/devutils/commit/06a2380ac214819b49643f5c8818e4e429b682df))
+
+
+### Bug Fixes
+
+* 🐛 fix gitversion workflow ([49088e6](https://github.com/tomgrv/devutils/commit/49088e68594c2155c3bdadc786854b2c83dca188))
+* 🐛 fix release script ([b22c8ef](https://github.com/tomgrv/devutils/commit/b22c8efb83ab32e4b9184a60169c2217a583603a))
+
 ## [0.8.2](https://github.com/tomgrv/devutils/compare/v0.8.1...v0.8.2) (2024-05-08)
 
 

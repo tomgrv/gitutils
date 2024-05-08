@@ -27,6 +27,9 @@ jobs:
     steps:
       # Checkout if necessary to determine whether 'foo' needs to run
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
       - name: Test if npm publish job should run
         if:  ${{ hashFiles('package-lock.json') != '' || hashFiles('yarn.lock') != '' }}
         id: npm
@@ -63,9 +66,6 @@ jobs:
     if: needs.planner.outputs.npm == 'true' && needs.planner.outputs.unstable != 'true'
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          filter: blob:none
       - run: npm ci
       - uses: actions/setup-node@v3
         with:
