@@ -2,13 +2,16 @@
 
 echo "Copying stub files" | npx chalk-cli --stdin blue
 
-# Go to root
+### Go to root
 cd $(npm root)/..
 
-# Copy all files from dist to root
-sudo cp -rupa ./stub/. .
+### Alias to module root
+module=$(readlink -f $(dirname $0))
 
-# find all file with a trailing slash outside dist folder, make sure they are added to .gitignore and remove the trailing slash
+### Copy all files from dist to root
+sudo cp -rupa $module/stub/. .
+
+### find all file with a trailing slash outside dist folder, make sure they are added to .gitignore and remove the trailing slash
 echo "Add files to .gitignore" | npx chalk-cli --stdin blue
 for file in $(find . -type f -name "*#" -not -path "./stub/*" -not -path "./node_modules/*" -not -path "./vendors/*"); do
 
@@ -26,10 +29,10 @@ for file in $(find . -type f -name "*#" -not -path "./stub/*" -not -path "./node
 done
 
 ### Call the install.sh script in all subfloder of the dist folder
-for file in $(find ./dist -type f -name "install.sh"); do
+for file in $(find $module/dist -type f -name "install.sh"); do
 
     ### Get middle part of the path
-    folder=$(dirname ${file#./dist/})
+    folder=$(dirname ${file#$module/dist/})
 
     ### Add folder to .gitignore if not already there
     echo "Add .$folder to .gitignore" | npx chalk-cli --stdin yellow

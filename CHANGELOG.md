@@ -4,6 +4,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.9.4](https://github.com/tomgrv/devutils/compare/v0.9.3...v0.9.4) (2024-05-08)
+
+
+### Bug Fixes
+
+* 🐛 fix path issue when dependency ([5947fa2](https://github.com/tomgrv/devutils/commit/5947fa21e3d091bf3825d88483841db3a322f4b3))
+
 ## [0.9.3](https://github.com/tomgrv/devutils/compare/v0.9.2...v0.9.3) (2024-05-08)
 
 
