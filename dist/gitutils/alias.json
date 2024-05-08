@@ -1,6 +1,6 @@
 {
     "sync": "git fetch --progress --prune --recurse-submodules=no origin && git stash save --keep-index --include-untracked && git merge --ff-only @{u} && git stash pop --index || git stash drop",
-    "align": "git checkout --force $(git rev-parse --abbrev-ref HEAD)",
+    "align": "git reset --hard $(git rev-parse --abbrev-ref --symbolic-full-name @{u})",
     "conflict": "git diff --name-only --diff-filter=U",
     "isFixup": "git log -1 --pretty=%s | grep -q fixup! && exit 0 || exit 1",
     "isRebase": "git rev-parse --git-dir | grep -q rebase-merge || git rev-parse --git-dir | grep -q rebase-apply",
@@ -10,9 +10,9 @@
     "initFrom": "git clone --origin template --branch master --depth 1 -- $1 $2 && cd $2 && git branch -m master template && git checkout -b master && git checkout -b develop",
     "renameTag": "set -e;git tag $2 $1; git tag -d $1;git push origin :refs/tags/$1;git push --tags",
     "ignore": "grep -qxF \"$1\" .gitignore || echo \"$1\" >>.gitignore && git rm --cached \"$1\" 2>/dev/null",
-    "clean": "git reset --hard HEAD --",
     "undo": "git reset --soft HEAD^ --",
     "crush": "git amend --no-verify && git push --force",
-    "amend": "git diff-index --cached --quiet HEAD || git commit --amend -C HEAD $*",
-    "co": "git commit --no-edit --all $*"
+    "amend": "git diff-index --cached --quiet HEAD || git commit --amend --no-verify -C HEAD $*",
+    "co": "git commit --no-edit $*",
+    "go": "git commit --no-edit --all $*"
 }

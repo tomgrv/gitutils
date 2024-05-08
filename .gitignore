@@ -33,11 +33,11 @@ Homestead.yaml
 .rej
 .orig
 .gitattributes
-.vscode/tasks.json
-.vscode/settings.json
-.vscode/launch.json
+
 .vscode/extensions.json
-/.vscode
-/.husky
-/.gitversion
+.vscode/launch.json
+.vscode/settings.json
+.vscode/tasks.json
 /.gitutils
+/.husky
+/.package

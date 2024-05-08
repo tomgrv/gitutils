@@ -8,7 +8,7 @@
     },
     "commit-and-tag-version": {
         "scripts": {
-            "prebump": "git bump-version"
+            "prebump": "gitversion -config .gitversion -showvariable MajorMinorPatch"
         }
     }
 }

@@ -8,17 +8,16 @@
     "features": {
         "ghcr.io/devcontainers/features/node": "lts",
         "ghcr.io/devcontainers/features/dotnet": "lts",
-        "ghcr.io/devcontainers/features/php": "lts",
-        "ghcr.io/devcontainers-contrib/features/act": "v0.2"
+        "ghcr.io/devcontainers/features/php": "lts"
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     // "forwardPorts": [],
     // Use 'postCreateCommand' to run commands after the container is created.
-    // "postCreateCommand": "uname -a",
+    "postCreateCommand": "sh .devcontainer/install.sh"
     // Configure tool-specific properties.
     // "customizations": {},
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
     // "remoteUser": "root"
     // Update the template version to pick up the latest changes to the template.
-    "postStartCommand": "npm install"
+    // "postStartCommand": "npm install"
 }
