@@ -1,6 +1,6 @@
 {
   "name": "@tomgrv/devutils",
-  "version": "0.7.0",
+  "version": "0.8.1",
   "description": "Configure dev environment with git hooks, commitlint, commitizen, lint-staged, prettier, and more",
   "type": "module",
   "bin": {
@@ -18,7 +18,7 @@
   },
   "commit-and-tag-version": {
     "scripts": {
-      "prebump": "gitversion -config .gitversion -showvariable MajorMinorPatch"
+      "prebump": "~/.dotnet/tools/dotnet-gitversion -config .gitversion -showvariable MajorMinorPatch"
     },
     "bumpFiles": [
       {
