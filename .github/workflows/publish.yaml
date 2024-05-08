@@ -63,6 +63,9 @@ jobs:
     if: needs.planner.outputs.npm == 'true' && needs.planner.outputs.unstable != 'true'
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
       - run: npm ci
       - uses: actions/setup-node@v3
         with:
