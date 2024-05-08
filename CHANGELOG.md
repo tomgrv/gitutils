@@ -4,6 +4,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.8.2](https://github.com/tomgrv/devutils/compare/v0.8.1...v0.8.2) (2024-05-08)
+
+
+### Bug Fixes
+
+* 🐛 fix gitversion in publish workflow ([27f261a](https://github.com/tomgrv/devutils/commit/27f261a9ee7ca55ef35f6480a4a738b81e96b435))
+* 🐛 fix peerdependencies ([bfdf900](https://github.com/tomgrv/devutils/commit/bfdf90021d8ffee0d742525299bb35082d37b2d3))
+
 ## [0.8.1](///compare/v0.7.1...v0.8.1) (2024-05-08)
 
 
