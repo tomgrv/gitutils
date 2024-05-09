@@ -5,7 +5,7 @@ on:
         - develop
         - 'release/**'
         - 'feature/**'
-run-name: Publish on ${{ github.ref_name }}
+
 jobs:
   planner:
     name: Determine which jobs to run

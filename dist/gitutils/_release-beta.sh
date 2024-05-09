@@ -13,7 +13,7 @@ fi
 GBV=$(gitversion -config .gitversion -showvariable MajorMinorPatch | tee .git/RELEASE)
 
 #### START RELEASE
-git flow release start $GBV
+git flow release start $GBV && git push origin release/$GBV
 
 #### BACK
 cd - >/dev/null
