@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Copying stub files" | npx chalk-cli --stdin blue
+
 
 ### Go to root
 cd $(git rev-parse --show-toplevel) >/dev/null
@@ -8,8 +8,20 @@ cd $(git rev-parse --show-toplevel) >/dev/null
 ### Alias to current module
 module=$(dirname $(readlink -f $0))
 
-### Copy all files from dist to root
-sudo cp -rpa $module/stub/. .
+### Merge all files from stub folder to root with git merge-file
+echo "Merging stub files" | npx chalk-cli --stdin blue
+for file in $(find $module/stub -type f); do
+
+    ### Get middle part of the path
+    folder=$(dirname ${file#$module/stub/})
+
+    ### Create folder if not exists
+    mkdir -p $folder
+
+    ### Merge file
+    echo "Merge $folder/$(basename $file)" | npx chalk-cli --stdin yellow
+    git merge-file -p $file $folder/$(basename $file) ${folder#./}/$(basename $file) >$folder/$(basename $file)
+done
 
 ### find all file with a trailing slash outside dist folder, make sure they are added to .gitignore and remove the trailing slash
 echo "Add files to .gitignore" | npx chalk-cli --stdin blue
