@@ -6,7 +6,7 @@ echo "Configuring git for this repo..." | npx chalk-cli --stdin blue
 cd "$(git rev-parse --show-toplevel)" >/dev/null
 
 ### Alias to module root
-module=$(readlink -f $(dirname $0))
+module=$(dirname $(readlink -f $0))
 
 ### Function to linearize json object
 linearize_json() {

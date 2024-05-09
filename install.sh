@@ -3,13 +3,13 @@
 echo "Copying stub files" | npx chalk-cli --stdin blue
 
 ### Go to root
-cd $(npm root)/..
+cd $(git rev-parse --show-toplevel) >/dev/null
 
-### Alias to module root
-module=$(readlink -f $(dirname $0))
+### Alias to current module
+module=$(dirname $(readlink -f $0))
 
 ### Copy all files from dist to root
-sudo cp -rupa $module/stub/. .
+sudo cp -rpa $module/stub/. .
 
 ### find all file with a trailing slash outside dist folder, make sure they are added to .gitignore and remove the trailing slash
 echo "Add files to .gitignore" | npx chalk-cli --stdin blue

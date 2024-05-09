@@ -6,7 +6,7 @@ echo "Merge all package folder json files into top level package.json" | npx cha
 cd "$(git rev-parse --show-toplevel)" >/dev/null
 
 ### Alias to module root
-module=$(readlink -f $(dirname $0))
+module=$(dirname $(readlink -f $0))
 
 ### Merge all package folder json files into top level package.json
 find $module -name _*.json | sort | while read file; do
