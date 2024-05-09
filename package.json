@@ -1,6 +1,6 @@
 {
     "name": "@tomgrv/devutils",
-    "version": "0.10.1",
+    "version": "0.11.0",
     "description": "Configure dev environment with devcontainer, gitflow, gitversion, git aliases & hooks",
     "type": "module",
     "homepage": "https://github.com/tomgrv/devutils#readme",
@@ -15,7 +15,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/tomgrv/devutils.git"
+        "url": "git+https://github.com/tomgrv/devutils.git"
     },
     "keywords": [
         "dev",
@@ -35,7 +35,7 @@
         "semver"
     ],
     "bin": {
-        "devutils": "./install.sh"
+        "devutils": "install.sh"
     },
     "peerDependencies": {
         "@commitlint/cli": "^19.2.2",
@@ -59,7 +59,9 @@
         "test": "echo \"Warning: no test specified\"",
         "lint": "lint-staged",
         "release": "npx commit-and-tag-version --no-verify --",
-        "init": "sh ./index.sh"
+        "init": "sh ./index.sh",
+        "publish-beta": "git release-beta",
+        "publish-prod": "git release-prod"
     },
     "commit-and-tag-version": {
         "scripts": {

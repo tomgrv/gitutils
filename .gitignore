@@ -33,7 +33,6 @@ Homestead.yaml
 .rej
 .orig
 .gitattributes
-
 .vscode/extensions.json
 .vscode/launch.json
 .vscode/settings.json
