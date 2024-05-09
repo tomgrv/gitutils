@@ -4,6 +4,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.11.0](https://github.com/tomgrv/devutils/compare/v0.10.1...v0.11.0) (2024-05-09)
+
+
+### Features
+
+* ✨ add licencxe file to stubs ([a585112](https://github.com/tomgrv/devutils/commit/a5851122e613e1327132e5e35bbc92779e338765))
+* ✨ merge stub instead of copy ([816858d](https://github.com/tomgrv/devutils/commit/816858ddb17aa1753e89b3825c029047a518c8f0))
+
+
+### Bug Fixes
+
+* 🐛 improve publish ([d93bbb1](https://github.com/tomgrv/devutils/commit/d93bbb11830843bb3b9de045dde38fefa7abd92e))
+
 ## [0.10.1](https://github.com/tomgrv/devutils/compare/v0.9.4...v0.10.1) (2024-05-09)
 
 

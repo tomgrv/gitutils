@@ -1,6 +1,6 @@
 {
     "name": "@tomgrv/devutils",
-    "version": "0.10.1",
+    "version": "0.11.0",
     "description": "Configure dev environment with devcontainer, gitflow, gitversion, git aliases & hooks",
     "type": "module",
     "homepage": "https://github.com/tomgrv/devutils#readme",
