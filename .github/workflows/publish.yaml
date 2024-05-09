@@ -66,14 +66,19 @@ jobs:
     if: needs.planner.outputs.npm == 'true' && needs.planner.outputs.unstable != 'true'
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci
       - uses: actions/setup-node@v3
         with:
           node-version: "20"
+      - name: Check if npm package is private
+        id: check
+        run: |
+          private=$(node -p "require('./package.json').private")
+          echo "private=${private:-false}" >> $GITHUB_OUTPUT
       - run: npm ci
       - run: npm test
       - name: Publish 
         uses: JS-DevTools/npm-publish@v3
+        if: steps.check.outputs.private != 'true'
         with:
           tag: ${{ needs.planner.outputs.prod == 'true' && 'latest' || 'next' }}
           token: ${{ secrets.NPM_TOKEN }}
