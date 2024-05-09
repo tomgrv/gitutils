@@ -66,6 +66,7 @@ jobs:
     if: needs.planner.outputs.npm == 'true' && needs.planner.outputs.unstable != 'true'
     steps:
       - uses: actions/checkout@v4
+      - run: npm version --no-git-tag-version --allow-same-version ${{ needs.planner.outputs.semver }}
       - run: npm ci
       - uses: actions/setup-node@v3
         with:
