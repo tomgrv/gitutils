@@ -59,7 +59,9 @@
         "test": "echo \"Warning: no test specified\"",
         "lint": "lint-staged",
         "release": "npx commit-and-tag-version --no-verify --",
-        "init": "sh ./index.sh"
+        "init": "sh ./index.sh",
+        "publish-beta": "git release-beta",
+        "publish-prod": "git release-prod"
     },
     "commit-and-tag-version": {
         "scripts": {
