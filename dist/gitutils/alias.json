@@ -13,7 +13,7 @@
     "undo": "git reset --soft HEAD^ --",
     "crush": "git amend --no-verify && git push --force",
     "amend": "git diff-index --cached --quiet HEAD || git commit --amend --no-verify -C HEAD $*",
-    "continue": "git align && git rebase --continue",
+    "continue": "git checkout -- . && git rebase --continue",
     "co": "git commit --no-edit $*",
     "go": "git commit --no-edit --all $*"
 }

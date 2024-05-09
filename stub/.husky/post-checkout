@@ -23,17 +23,3 @@ if test "$GIT_COMMAND" = "rebase"; then
   exit 0
 fi
 
-# Run composer install if composer.json changed
-if isChanged 'composer.lock' && ! isRebase; then
-  composer update php -W --ignore-platform-reqs --no-scripts --no-autoloader || true
-fi
-
-# Run npm install if package-lock.json changed
-if isChanged 'package-lock.json' && ! isRebase; then
-  WORKSP=$(cat package.json | npx jqn '.workspaces' | tr -d "'[]:")
-  if test "$WORKSP" = "undefined"; then
-    npm install || true
-  else
-    npm install --ws --if-present --include-workspace-root || true
-  fi
-fi
