@@ -76,5 +76,5 @@ jobs:
       - name: Publish 
         uses: JS-DevTools/npm-publish@v3
         with:
-          tag: ${{ needs.planner.outputs.prod == 'true' && 'latest' || 'next' }}
+          tag: ${{ needs.planner.outputs.prod == 'true' && 'latest' || 'unstable' }}
           token: ${{ secrets.NPM_TOKEN }}
