@@ -18,6 +18,20 @@ All notable changes to this project will be documented in this file. See [commit
 * 🐛 ensure container init ([4b38a9f](https://github.com/tomgrv/devutils/commit/4b38a9fd8f52c9fc8bd4321e1a2a5de07e9a7f79))
 * 🐛 update npm version ([5a13ac8](https://github.com/tomgrv/devutils/commit/5a13ac8a803c87e10439a3ae3c5aeffd12d19264))
 
+## [0.10.1](https://github.com/tomgrv/devutils/compare/v0.9.4...v0.10.1) (2024-05-09)
+
+
+### Features
+
+* ✨ improve publishg workflow ([522b9ce](https://github.com/tomgrv/devutils/commit/522b9ce09d2998c6e417aeef3beece129a6b1961))
+
+
+### Bug Fixes
+
+* 🐛 correct 'continue' alias ([13ed539](https://github.com/tomgrv/devutils/commit/13ed539b8aca9ed4644b31355b567a90a4bfc5fa))
+* 🐛 ensure container init ([4b38a9f](https://github.com/tomgrv/devutils/commit/4b38a9fd8f52c9fc8bd4321e1a2a5de07e9a7f79))
+* 🐛 update npm version ([5a13ac8](https://github.com/tomgrv/devutils/commit/5a13ac8a803c87e10439a3ae3c5aeffd12d19264))
+
 ## [0.9.4](https://github.com/tomgrv/devutils/compare/v0.9.3...v0.9.4) (2024-05-08)
 
 
