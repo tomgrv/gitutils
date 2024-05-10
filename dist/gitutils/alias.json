@@ -15,5 +15,8 @@
     "amend": "git diff-index --cached --quiet HEAD || git commit --amend --no-verify -C HEAD $*",
     "continue": "git checkout -- . && git rebase --continue",
     "co": "git commit --no-edit $*",
-    "go": "git commit --no-edit --all $*"
+    "go": "git commit --no-edit --all $*",
+    "rb": "git release-beta $*",
+    "rp": "git release-prod $*",
+    "rh": "git release-hotfix $*"
 }
