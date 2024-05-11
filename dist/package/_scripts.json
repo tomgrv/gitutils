@@ -2,8 +2,6 @@
     "scripts": {
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root",
-        "publish-beta": "git release-beta",
-        "publish-prod": "git release-prod",
         "test": "echo \"Warning: no test specified\""
     },
     "commit-and-tag-version": {

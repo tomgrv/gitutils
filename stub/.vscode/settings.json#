@@ -1,11 +1,16 @@
 {
     "triggerTaskOnSave.tasks": {
-        "dev-config": ["**/config.php", "config/*.php"],
-        "dev-views": [
-            //  "packages/**/*.blade.php"
+        "php-refresh-config": [
+            "**/config.php",
+            "config/*.php"
         ],
-        "dev-routes": ["**/[Rr]outes/*.php"],
-        "dev-db": [
+        "php-refresh-views": [
+            //"packages/**/*.blade.php"
+        ],
+        "php-refresh-routes": [
+            "**/[Rr]outes/*.php"
+        ],
+        "php-refresh-db": [
             // "**/migrations/*.php"
         ]
     },

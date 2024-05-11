@@ -1,6 +1,6 @@
 {
     "name": "@tomgrv/devutils",
-    "version": "0.11.0",
+    "version": "0.12.0",
     "description": "Configure dev environment with devcontainer, gitflow, gitversion, git aliases & hooks",
     "type": "module",
     "homepage": "https://github.com/tomgrv/devutils#readme",
@@ -56,12 +56,11 @@
         "update-all": "npm run update -ws --root",
         "release-beta": "git release-beta",
         "release-prod": "git release-prod",
+        "actions": "act -P ubuntu-latest=-self-hosted",
         "test": "echo \"Warning: no test specified\"",
         "lint": "lint-staged",
         "release": "npx commit-and-tag-version --no-verify --",
-        "init": "sh ./index.sh",
-        "publish-beta": "git release-beta",
-        "publish-prod": "git release-prod"
+        "init": "sh ./index.sh"
     },
     "commit-and-tag-version": {
         "scripts": {
