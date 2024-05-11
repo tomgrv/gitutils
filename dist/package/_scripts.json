@@ -2,10 +2,7 @@
     "scripts": {
         "update": "npx npm-check-updates -i -u",
         "update-all": "npm run update -ws --root",
-        "release-beta": "git release-beta",
-        "release-prod": "git release-prod",
-        "test": "echo \"Warning: no test specified\"",
-        "actions": "act -P ubuntu-latest=-self-hosted"
+        "test": "echo \"Warning: no test specified\""
     },
     "commit-and-tag-version": {
         "scripts": {
