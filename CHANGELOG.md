@@ -4,6 +4,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.12.0](https://github.com/tomgrv/devutils/compare/v0.11.0...v0.12.0) (2024-05-11)
+
+
+### Features
+
+* ✨ add hotfix support & new short aliases ([e8d53b7](https://github.com/tomgrv/devutils/commit/e8d53b7ae90ba7d183f87555902d49a8d48ec7e9))
+* ✨ improve new install handling ([c462bdc](https://github.com/tomgrv/devutils/commit/c462bdc84eb8b1267c466faa050ccf065ebe215f))
+
+
+### Bug Fixes
+
+* 🐛 fix publish workflow ([daa967a](https://github.com/tomgrv/devutils/commit/daa967ae78ce1fedd3fb61ffdcc753b0f12eb408))
+
 ## [0.11.0](https://github.com/tomgrv/devutils/compare/v0.10.1...v0.11.0) (2024-05-09)
 
 
