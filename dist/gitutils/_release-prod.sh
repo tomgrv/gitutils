@@ -35,8 +35,21 @@ fi
 #### GET BUMP VERSION
 GBV=$(gitversion -config .gitversion -showvariable MajorMinorPatch)
 
+#### PREVENT GIT EDITOR PROMPT
+GIT_EDITOR=: 
+
 #### UPDATE VERSION & CHANGELOG & FINISH RELEASE
-npx commit-and-tag-version --skip.tag --no-verify --release-as $GBV && git flow $flow finish $name --tagname $GBV --message $GBV --push && rm -f .git/RELEASE
+if npx commit-and-tag-version --skip.tag --no-verify --release-as $GBV; then
+    if git flow $flow finish $name --tagname $GBV --message $GBV --push; then
+        npx chalk-cli -t "{green ✔} Release finished: {blue $name -> $GBV}"
+        rm -f .git/RELEASE
+    else
+        git undo
+        npx chalk-cli -t "{red ✘} Cannot finish release. CHANGELOG & VERSION are not updated."
+    fi
+else
+    npx chalk-cli -t "{red ✘} Cannot update version & finish release"
+fi
 
 #### BACK
 cd - >/dev/null
