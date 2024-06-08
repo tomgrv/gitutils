@@ -41,7 +41,7 @@ for file in $(find . -type f -name "*#" -not -path "./stub/*" -not -path "./node
 done
 
 ### Ask to restart in container if this is not already the case
-if [ -z "$REMOTE_CONTAINERS" ] || [ "$REMOTE_CONTAINERS" != "true" ]; then
+if [  "$CODESPACES" != "true" ] && [ "$REMOTE_CONTAINERS" != "true" ]; then
     echo "You are not in a container, please restart in a container" | npx chalk-cli --stdin yellow
     exit 0
 fi
