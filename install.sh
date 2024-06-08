@@ -42,13 +42,13 @@ done
 
 ### Ask to restart in container if this is not already the case
 if [ -z "$REMOTE_CONTAINERS" ] || [ "$REMOTE_CONTAINERS" != "true" ]; then
-    echo "You are not in a container, please restart in a container" | npx chalk-cli --stdin orange
+    echo "You are not in a container, please restart in a container" | npx chalk-cli --stdin yellow
     exit 0
 fi
 
 ### Ask to rebuild container if devcontainer.json has changed
 if [ -n "$(git diff --name-only HEAD^ HEAD .devcontainer/devcontainer.json)" ]; then
-    echo "devcontainer.json has changed, please rebuild the container" | npx chalk-cli --stdin orange
+    echo "devcontainer.json has changed, please rebuild the container" | npx chalk-cli --stdin yellow
     exit 0
 fi
 
