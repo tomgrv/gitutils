@@ -13,5 +13,8 @@ for file in .husky/*; do
     chmod 755 "$file"
 done
 
-### Initialize husky
-npx husky install
+### Eventually remove from git
+git rm -r --cached .husky 2>/dev/null && echo ".husky folder now untracked" | npx chalk-cli --stdin yellow
+
+### Init Husky
+npx husky init
