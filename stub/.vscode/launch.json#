@@ -16,7 +16,7 @@
             ],
             "program": "",
             "cwd": "${workspaceRoot}",
-            "port": 9000,
+            "port": 9003,
             "preLaunchTask": "dev-start",
             "postDebugTask": "dev-stop",
             "serverReadyAction": {
@@ -30,7 +30,9 @@
     "compounds": [
         {
             "name": "Platform",
-            "configurations": ["Artisan Serve"],
+            "configurations": [
+                "Artisan Serve"
+            ],
             "preLaunchTask": "dev-full",
             "postDebugTask": "dev-stop",
             "stopAll": true
