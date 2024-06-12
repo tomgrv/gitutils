@@ -52,8 +52,36 @@ if [ -n "$(git diff --name-only HEAD^ HEAD .devcontainer/devcontainer.json)" ]; 
     exit 0
 fi
 
+### Ask to restart in container if this is not already the case
+if [ "$CODESPACES" != "true" ] && [ "$REMOTE_CONTAINERS" != "true" ]; then
+    echo "You are not in a container" | npx chalk-cli --stdin red
+
+    ### check if jq is installed and install it if not
+    echo "Check jq & Install if this is not the case" | npx chalk-cli --stdin blue
+    if ! command -v jq >/dev/null 2>&1; then
+
+        OS="$(uname)"
+
+        case ${OS%%-*} in
+        "Darwin")
+            brew install jq
+            ;;
+        "Linux")
+            sudo apt-get install jq
+            ;;
+        "MINGW64_NT")
+            curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
+            ;;
+        *)
+            echo "Unknown operating system: ${OS%%-*}"
+            exit 1
+            ;;
+        esac
+    fi
+fi
+
 ### Call the install.sh script in all subfloder of the dist folder
-for file in $(find $module/dist -type f -name "install.sh"); do
+for file in $(find $module/dist -type f -name ".install.sh"); do
 
     ### Get middle part of the path
     folder=$(dirname ${file#$module/dist/})

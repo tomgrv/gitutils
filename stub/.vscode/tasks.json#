@@ -36,8 +36,8 @@
         },
         {
             "label": "npm-maildev",
-            "type": "npm",
-            "script": "maildev",
+            "type": "shell",
+            "command": "npx maildev -s 8025 -w 9025",
             "group": "test",
             "problemMatcher": {
                 "pattern": [
@@ -93,8 +93,8 @@
             "dependsOn": [
                 "npm-watch",
                 "npm-maildev",
-                "php-refresh-queues",
-                "php-refresh-schedule"
+                "php-run-queues",
+                "php-run-schedule"
             ]
         },
         {
@@ -105,9 +105,9 @@
             ]
         },
         {
-            "label": "artisan-init",
+            "label": "php-init",
             "type": "shell",
-            "command": "php artisan key:generate && php artisan migrate",
+            "command": "touch $DB_DATABASE && echo APP_KEY='' > .env && php artisan key:generate --force && php artisan migrate --force",
             "problemMatcher": [],
             "isBackground": true,
             "group": "none"
@@ -121,7 +121,7 @@
             "group": "none"
         },
         {
-            "label": "build",
+            "label": "npm-build",
             "dependsOn": [
                 "npm: prod"
             ],
@@ -256,7 +256,7 @@
             }
         },
         {
-            "label": "beta",
+            "label": "git-beta",
             "type": "shell",
             "command": "git release-beta",
             "group": "none",
@@ -268,7 +268,7 @@
             }
         },
         {
-            "label": "hotfix",
+            "label": "git-hotfix",
             "type": "shell",
             "command": "git release-hotfix",
             "group": "none",
@@ -280,7 +280,7 @@
             }
         },
         {
-            "label": "prod",
+            "label": "git-prod",
             "type": "shell",
             "command": "git release-prod",
             "group": "none",
@@ -292,7 +292,7 @@
             }
         },
         {
-            "label": "amend",
+            "label": "git-amend",
             "type": "shell",
             "command": "git amend",
             "group": "none",
@@ -304,7 +304,7 @@
             }
         },
         {
-            "label": "act local",
+            "label": "act-local",
             "type": "shell",
             "command": "act -P ubuntu-latest=-self-hosted",
             "group": "test",

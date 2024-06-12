@@ -2,7 +2,8 @@
     "triggerTaskOnSave.tasks": {
         "php-refresh-config": [
             "**/config.php",
-            "config/*.php"
+            "config/*.php",
+            ".env"
         ],
         "php-refresh-views": [
             //"packages/**/*.blade.php"
