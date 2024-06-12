@@ -8,8 +8,8 @@ cd "$(git rev-parse --show-toplevel)" >/dev/null
 ### Alias to module root
 module=$(dirname $(readlink -f $0))
 
-### Make sure all files in .husky folder are executable
-for file in .husky/*; do
+### Make sure all files in folder are executable
+for file in ./.husky/*; do
     chmod 755 "$file"
 done
 
@@ -17,4 +17,5 @@ done
 git rm -r --cached .husky 2>/dev/null && echo ".husky folder now untracked" | npx chalk-cli --stdin yellow
 
 ### Init Husky
+echo "Init husky for this repo..." | npx chalk-cli --stdin blue
 npx husky init

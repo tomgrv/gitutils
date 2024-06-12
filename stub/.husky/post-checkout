@@ -1,6 +1,5 @@
 #!/bin/sh
 export PATH=/usr/bin:$PATH
-. "$(dirname "$0")/_/husky.sh"
 
 # Enable colors
 if [ -t 1 ]; then
@@ -22,4 +21,3 @@ if test "$GIT_COMMAND" = "rebase"; then
   npx chalk-cli --no-stdin -t "{green ✔} Skip post-checkout hook during rebase."
   exit 0
 fi
-
