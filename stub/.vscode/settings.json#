@@ -27,5 +27,6 @@
         "[x]",
         "NOTE"
     ],
-    "conventionalCommits.gitmoji": false
+    "conventionalCommits.gitmoji": false,
+    "explorer.excludeGitIgnore": true
 }
