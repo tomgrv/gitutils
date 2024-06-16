@@ -27,5 +27,5 @@
         "APP_ENV": "local"
     },
     // Ensure the container is correctly configured for the workspace.
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+    "postStartCommand": "sh .devcontainer/start.sh"
 }

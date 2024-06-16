@@ -105,14 +105,6 @@
             ]
         },
         {
-            "label": "php-init",
-            "type": "shell",
-            "command": "touch $DB_DATABASE && echo APP_KEY='' > .env && php artisan key:generate --force && php artisan migrate --force",
-            "problemMatcher": [],
-            "isBackground": true,
-            "group": "none"
-        },
-        {
             "label": "devutils",
             "type": "shell",
             "command": "npx devutils",
