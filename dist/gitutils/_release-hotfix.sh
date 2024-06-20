@@ -9,6 +9,9 @@ GBV=$(gitversion -config .gitversion -showvariable MajorMinorPatch)
 #### SAVE CURRENT STATUS
 git stash save --all "Before hotfix/$GBV"
 
+#### PREVENT GIT EDITOR PROMPT
+GIT_EDITOR=: 
+
 #### START HOTFIX
 git flow hotfix start $GBV
 

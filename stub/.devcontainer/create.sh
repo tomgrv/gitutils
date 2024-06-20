@@ -9,4 +9,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 
 ### Install GitFlow
 sudo apt-get update
-sudo apt-get install git-flow
+sudo apt-get install -y git-flow dos2unix php-zip
+
+### Ensure correct access rights
+sudo chown -Rf vscode ${containerWorkspaceFolder:-.}/* ${containerWorkspaceFolder:-.}/.*
+sudo chmod -Rf 755 ${containerWorkspaceFolder:-.}/* ${containerWorkspaceFolder:-.}/.*

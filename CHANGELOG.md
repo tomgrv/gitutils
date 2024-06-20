@@ -4,6 +4,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.13.0](https://github.com/tomgrv/devutils/compare/v0.12.0...v0.13.0) (2024-06-20)
+
+
+### Features
+
+* ✨ add default env ([5bc3df6](https://github.com/tomgrv/devutils/commit/5bc3df68916319e77dac6f8650148311c84c7d25))
+* ✨ add dos2unix ([91e3c40](https://github.com/tomgrv/devutils/commit/91e3c40757347771c3eea85e8ad4d67b80aab8ab))
+* ✨ configure env on codespace start ([d9616b3](https://github.com/tomgrv/devutils/commit/d9616b3eccd77e97a8c176e7d8466b4d14e2cd62))
+* ✨ exclude git igniored files ([651e720](https://github.com/tomgrv/devutils/commit/651e7205f2a9c71a7448f47bba8edbe3d8de108f))
+* ✨ improve container ([c00d7ec](https://github.com/tomgrv/devutils/commit/c00d7ecda400c3a9282a1e8e4953ec0711243edd))
+* ✨ improve laravel config ([7fc1d6d](https://github.com/tomgrv/devutils/commit/7fc1d6d644f7f0b414b9490e9c20a38987e594cf))
+* cleanup eventual git config for husky ([c499ebb](https://github.com/tomgrv/devutils/commit/c499ebb6b4923b3c4d59fbb5f130752810ff8328))
+
+
+### Bug Fixes
+
+* 🐛 fix xdebug default port ([652a855](https://github.com/tomgrv/devutils/commit/652a8559e81e79cc701f09db0fd7c72a147688b0))
+* change color ([e379116](https://github.com/tomgrv/devutils/commit/e3791162c52b7691056d0abaacbb1f3cf6ec51fe))
+* container detection ([781c7a6](https://github.com/tomgrv/devutils/commit/781c7a6a8831b26c690841bb7fe00043d2802b26))
+
 ## [0.12.0](https://github.com/tomgrv/devutils/compare/v0.11.0...v0.12.0) (2024-05-11)
 
 

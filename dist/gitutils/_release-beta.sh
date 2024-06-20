@@ -12,6 +12,9 @@ fi
 #### GET BUMP VERSION
 GBV=$(gitversion -config .gitversion -showvariable MajorMinorPatch | tee .git/RELEASE)
 
+#### PREVENT GIT EDITOR PROMPT
+GIT_EDITOR=: 
+
 #### START RELEASE
 git flow release start $GBV && git push origin release/$GBV
 

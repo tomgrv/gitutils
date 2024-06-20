@@ -1,9 +1,10 @@
 #!/bin/sh
 
-
-
 ### Go to root
 cd $(git rev-parse --show-toplevel) >/dev/null
+
+### Stash all changes including untracked files
+stash=$(git stash -u && echo true)
 
 ### Alias to current module
 module=$(dirname $(readlink -f $0))
@@ -41,19 +42,35 @@ for file in $(find . -type f -name "*#" -not -path "./stub/*" -not -path "./node
 done
 
 ### Ask to restart in container if this is not already the case
-if [ -z "$REMOTE_CONTAINERS" ] || [ "$REMOTE_CONTAINERS" != "true" ]; then
-    echo "You are not in a container, please restart in a container" | npx chalk-cli --stdin orange
-    exit 0
-fi
+if [ "$CODESPACES" != "true" ] && [ "$REMOTE_CONTAINERS" != "true" ]; then
+    echo "You are not in a container" | npx chalk-cli --stdin red
 
-### Ask to rebuild container if devcontainer.json has changed
-if [ -n "$(git diff --name-only HEAD^ HEAD .devcontainer/devcontainer.json)" ]; then
-    echo "devcontainer.json has changed, please rebuild the container" | npx chalk-cli --stdin orange
-    exit 0
+    ### check if jq is installed and install it if not
+    echo "Check jq & Install if this is not the case" | npx chalk-cli --stdin blue
+    if ! command -v jq >/dev/null 2>&1; then
+
+        OS="$(uname)"
+
+        case ${OS%%-*} in
+        "Darwin")
+            brew install jq
+            ;;
+        "Linux")
+            sudo apt-get install jq
+            ;;
+        "MINGW64_NT")
+            curl -L -o /usr/bin/jq.exe https://github.com/stedolan/jq/releases/latest/download/jq-win64.exe
+            ;;
+        *)
+            echo "Unknown operating system: ${OS%%-*}"
+            exit 1
+            ;;
+        esac
+    fi
 fi
 
 ### Call the install.sh script in all subfloder of the dist folder
-for file in $(find $module/dist -type f -name "install.sh"); do
+for file in $(find $module/dist -type f -name ".install.sh"); do
 
     ### Get middle part of the path
     folder=$(dirname ${file#$module/dist/})
@@ -68,3 +85,11 @@ for file in $(find $module/dist -type f -name "install.sh"); do
     echo "Running $file" | npx chalk-cli --stdin blue
     bash $file
 done
+
+### Stage non withespace changes
+git ls-files --others --exclude-standard | xargs -I {} bash -c 'if [ -s "{}" ]; then git add "{}"; fi'
+git diff -w --no-color | git apply --cached --ignore-whitespace
+git checkout -- . && git reset && git add .
+
+### Unstash changes
+test -n "$stash" && git stash apply && git stash drop

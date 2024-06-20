@@ -2,7 +2,8 @@
     "triggerTaskOnSave.tasks": {
         "php-refresh-config": [
             "**/config.php",
-            "config/*.php"
+            "config/*.php",
+            ".env"
         ],
         "php-refresh-views": [
             //"packages/**/*.blade.php"
@@ -26,5 +27,6 @@
         "[x]",
         "NOTE"
     ],
-    "conventionalCommits.gitmoji": false
+    "conventionalCommits.gitmoji": false,
+    "explorer.excludeGitIgnore": true
 }

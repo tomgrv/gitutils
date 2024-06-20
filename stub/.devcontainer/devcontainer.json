@@ -11,14 +11,112 @@
         "ghcr.io/devcontainers/features/php": "lts",
         "ghcr.io/devcontainers/features/docker-in-docker:2": "lts"
     },
+    "mounts": [
+        "source=${localWorkspaceFolderBasename}-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume",
+        "source=${localWorkspaceFolderBasename}-vendor,target=${containerWorkspaceFolder}/vendor,type=volume"
+    ],
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
-    // "forwardPorts": [],
+    "forwardPorts": [
+        8088,
+        8085
+    ],
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "sh .devcontainer/install.sh",
+    "postCreateCommand": "sh .devcontainer/create.sh",
     // Configure tool-specific properties.
-    // "customizations": {},
+    "customizations": {
+        "vscode": {
+            // Set *default* container specific settings.json values on container create.
+            "settings": {
+                "triggerTaskOnSave.tasks": {
+                    "php-refresh-config": [
+                        "**/config.php",
+                        "config/*.php",
+                        ".env"
+                    ],
+                    "php-refresh-views": [
+                        //"packages/**/*.blade.php"
+                    ],
+                    "php-refresh-routes": [
+                        "**/[Rr]outes/*.php"
+                    ],
+                    "php-refresh-db": [
+                        // "**/migrations/*.php"
+                    ]
+                },
+                "editor.formatOnSave": true,
+                "editor.formatOnPaste": true,
+                "todo-tree.general.tags": [
+                    "BUG",
+                    "HACK",
+                    "FIXME",
+                    "TODO",
+                    "XXX",
+                    "[ ]",
+                    "[x]",
+                    "NOTE"
+                ],
+                "conventionalCommits.gitmoji": false,
+                "explorer.excludeGitIgnore": true
+            },
+            "extensions": [
+                "github.copilot",
+                "vivaxy.vscode-conventional-commits",
+                "actboy168.tasks",
+                "spmeesseman.vscode-taskexplorer",
+                "gruntfuggly.triggertaskonsave",
+                "entexa.tall-stack",
+                "github.codespaces",
+                "natizyskunk.sftp",
+                "formulahendry.auto-rename-tag",
+                "formulahendry.auto-close-tag",
+                "absszero.vscode-laravel-goto",
+                "marabesi.php-import-checker",
+                "alexcvzz.vscode-sqlite",
+                "bmewburn.vscode-intelephense-client",
+                "gruntfuggly.todo-tree",
+                "onecentlin.laravel-blade",
+                "github.copilot",
+                "github.copilot-chat",
+                "dotenv.dotenv-vscode",
+                "donjayamanne.githistory",
+                "xdebug.php-debug",
+                "tomblind.scm-buttons-vscode",
+                "misterj.laravel-expack",
+                "devsense.composer-php-vscode",
+                "mhutchie.git-graph",
+                "christian-kohler.npm-intellisense",
+                "davidanson.vscode-markdownlint",
+                "github.vscode-github-actions",
+                "pcbowers.alpine-intellisense",
+                "softwareape.rebaser"
+            ]
+        }
+    },
     // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
     // "remoteUser": "root"
-    // Update the template version to pick up the latest changes to the template.
-    "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}"
+    // Define env vars to set in the container.
+    "remoteEnv": {
+        "DB_CONNECTION": "sqlite",
+        "DB_DATABASE": "${containerWorkspaceFolder}/storage/app/db.sqlite",
+        "APP_DEBUG": "true",
+        "APP_ENV": "local",
+        "XDEBUG_MODE": "debug",
+        "APP_NAME": "Laravel",
+        "APP_URL": "http://127.0.0.1",
+        "BROADCAST_DRIVER": "log",
+        "CACHE_DRIVER": "array",
+        "QUEUE_CONNECTION": "sync",
+        "SESSION_DRIVER": "database",
+        "SESSION_LIFETIME": "120",
+        "MAIL_MAILER": "smtp",
+        "MAIL_HOST": "127.0.0.1",
+        "MAIL_PORT": "8025",
+        "MAIL_USERNAME": "null",
+        "MAIL_PASSWORD": "null",
+        "MAIL_ENCRYPTION": "null",
+        "MAIL_FROM_ADDRESS": "vscode@localhost",
+        "MAIL_FROM_NAME": "vscode"
+    },
+    // Ensure the container is correctly configured for the workspace.
+    "postStartCommand": "sh .devcontainer/start.sh"
 }
