@@ -14,8 +14,9 @@ linearize_json() {
 ### For each entry in config.json file next to this file, create corresponding git config from key and value.
 ### if value is an object, parse it as json and create dotted keys
 echo "Configuring git for this repo..." | npx chalk-cli --stdin blue
-linearize_json $module/config.json | while read key value; do
-    git config --local $key $value
+linearize_json $module/config.json | while read key value; do    
+    git config --local --unset-all $key
+    git config --local $key "$value"
     echo "Created config $key => $value" | npx chalk-cli --stdin green
 done
 

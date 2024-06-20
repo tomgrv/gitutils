@@ -37,7 +37,7 @@
         {
             "label": "npm-maildev",
             "type": "shell",
-            "command": "npx maildev -s 8025 -w 9025",
+            "command": "npx maildev -s 8025 -w 8085 -v",
             "group": "test",
             "problemMatcher": {
                 "pattern": [

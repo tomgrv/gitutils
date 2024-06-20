@@ -3,6 +3,9 @@
 ### Go to root
 cd $(git rev-parse --show-toplevel) >/dev/null
 
+### Stash all changes including untracked files
+stash=$(git stash -u && echo true)
+
 ### Alias to current module
 module=$(dirname $(readlink -f $0))
 
@@ -82,3 +85,11 @@ for file in $(find $module/dist -type f -name ".install.sh"); do
     echo "Running $file" | npx chalk-cli --stdin blue
     bash $file
 done
+
+### Stage non withespace changes
+git ls-files --others --exclude-standard | xargs -I {} bash -c 'if [ -s "{}" ]; then git add "{}"; fi'
+git diff -w --no-color | git apply --cached --ignore-whitespace
+git checkout -- . && git reset && git add .
+
+### Unstash changes
+test -n "$stash" && git stash apply && git stash drop
